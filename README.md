@@ -105,6 +105,8 @@ Then add it to the NewGRF list of a new game.
 
 Tested with OpenTTD 16.
 
+Questions, feedback and bug reports are welcome in the [tt-forums thread](https://www.tt-forums.net/viewtopic.php?t=92968) or as [GitHub issues](https://github.com/samipuro/openttd-aircraft-realistic/issues).
+
 ## Compatibility
 
 Start a new game to use this set. In an existing games, aircraft you already own keep flying but can no longer be bought; they can be replaced with this set's aircraft through autoreplace.
