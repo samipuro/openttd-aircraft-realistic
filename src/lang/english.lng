@@ -1,0 +1,45 @@
+##grflangid 0x01
+STR_GRF_NAME :Aircraft: Realistic and Remastered
+STR_GRF_DESC :Real-world aircraft with real names, real dates and distinct silhouettes. Replaces all default aircraft. Compatible with "Original vehicle names".{}{}By Sami Puro. Aircraft technical data: AirwaySim, www.airwaysim.com
+STR_GRF_URL :https://github.com/samipuro/openttd-aircraft-realistic
+STR_NAME_101 :Junkers Ju 52
+STR_NAME_102 :Douglas DC-3
+STR_NAME_103 :Lockheed Constellation
+STR_NAME_104 :de Havilland D.H.106 Comet
+STR_NAME_105 :Vickers Viscount
+STR_NAME_106 :Fokker F27 Friendship
+STR_NAME_107 :Boeing 707
+STR_NAME_108 :Sud Aviation SE-210 Caravelle
+STR_NAME_109 :Douglas DC-8
+STR_NAME_110 :Sikorsky S-61
+STR_NAME_111 :Boeing 727
+STR_NAME_112 :BAC One-Eleven
+STR_NAME_113 :Douglas DC-9
+STR_NAME_114 :Mil Mi-8
+STR_NAME_115 :Boeing 737
+STR_NAME_116 :Boeing 747
+STR_NAME_117 :McDonnell Douglas DC-10
+STR_NAME_118 :Lockheed L-1011 TriStar
+STR_NAME_119 :Tupolev Tu-154
+STR_NAME_120 :Airbus A300
+STR_NAME_121 :Aérospatiale/BAC Concorde
+STR_NAME_122 :McDonnell Douglas MD-80
+STR_NAME_123 :Aérospatiale AS332 Super Puma
+STR_NAME_124 :Boeing 767
+STR_NAME_125 :Boeing 757
+STR_NAME_126 :British Aerospace BAe 146
+STR_NAME_127 :de Havilland Canada Dash 8
+STR_NAME_128 :Fokker 100
+STR_NAME_129 :Airbus A320
+STR_NAME_130 :ATR 72
+STR_NAME_131 :Bombardier CRJ
+STR_NAME_132 :Airbus A330
+STR_NAME_133 :Boeing 777
+STR_NAME_134 :Boeing 737NG
+STR_NAME_135 :Sikorsky S-92
+STR_NAME_136 :Embraer E190
+STR_NAME_137 :Airbus A380
+STR_NAME_138 :Boeing 787
+STR_NAME_139 :Airbus A350
+STR_NAME_140 :Airbus A320neo
+STR_NAME_141 :Boeing 737 MAX

@@ -1,0 +1,42 @@
+id,name,baseline,type,intro_date,buy_until,vehicle_life,passengers,mail,goods,valuables,speed_mph,speed_kmh,running_cost_factor,cost_factor
+1,Junkers Ju 52,Junkers Ju 52/3m,small,1930-09-11,1960,20,15,5,10,5,136,219,41,8
+2,Douglas DC-3,Douglas DC-3,small,1936-01-01,1966,20,25,5,10,5,176,283,56,9
+3,Lockheed Constellation,Lockheed L-1049G Super Constellation,large,1946-02-05,1976,20,85,10,35,20,336,541,121,21
+4,de Havilland D.H.106 Comet,de Havilland DH.106 Comet 4,large,1952-02-01,1982,20,80,5,35,15,512,824,189,25
+5,Vickers Viscount,Vickers Viscount 800,small,1953-04-17,1983,20,65,5,30,15,320,515,105,15
+6,Fokker F27 Friendship,Fokker F.27 Mk 200 Friendship,small,1958-03-01,1988,25,45,5,25,10,280,451,87,10
+7,Boeing 707,Boeing 707-320B,large,1958-10-01,1988,25,150,25,85,45,544,875,246,29
+8,Sud Aviation SE-210 Caravelle,Sud Aviation SE-210 Caravelle III,large,1959-06-01,1989,25,75,5,35,15,512,824,176,18
+9,Douglas DC-8,Douglas DC-8-51,large,1959-09-18,1989,25,160,20,70,35,528,850,225,30
+10,Sikorsky S-61,Sikorsky S-61N,helicopter,1962-01-01,never,25,30,5,10,5,136,219,73,7
+11,Boeing 727,Boeing 727-200Adv,large,1964-02-01,1994,25,140,20,75,35,528,850,175,26
+12,BAC One-Eleven,BAC One-Eleven 500,large,1965-01-22,1995,25,100,10,50,25,464,747,166,22
+13,Douglas DC-9,McDonnell Douglas DC-9-31,large,1965-11-23,1995,25,105,10,55,25,512,824,155,20
+14,Mil Mi-8,Mil Mi-8P,helicopter,1967-01-01,never,25,28,5,15,10,136,219,78,5
+15,Boeing 737,Boeing 737-200 Adv,large,1967-12-01,1997,25,100,10,60,30,464,747,148,19
+16,Boeing 747,Boeing 747-200B,large,1969-12-30,1999,25,365,85,265,130,544,875,287,57
+17,McDonnell Douglas DC-10,McDonnell Douglas DC-10-10,large,1971-07-05,2001,25,270,40,170,85,544,875,222,42
+18,Lockheed L-1011 TriStar,Lockheed L-1011 TriStar 500,large,1972-02-01,2002,25,245,55,175,90,560,901,234,41
+19,Tupolev Tu-154,Tupolev Tu-154M,large,1972-02-01,2004,25,165,20,70,35,560,901,228,14
+20,Airbus A300,Airbus A300B4-200,large,1974-05-10,2007,25,250,70,140,70,528,850,192,40
+21,Aérospatiale/BAC Concorde,Aérospatiale / BAC Concorde,large,1976-06-21,2006,25,120,10,55,25,1320,2124,327,85
+22,McDonnell Douglas MD-80,McDonnell Douglas MD-82,large,1980-09-13,2010,30,155,15,80,40,512,824,151,28
+23,Aérospatiale AS332 Super Puma,Aérospatiale AS332L Super Puma,helicopter,1981-06-01,never,30,25,5,10,5,160,257,72,11
+24,Boeing 767,Boeing 767-300ER,large,1982-08-19,never,30,260,55,150,75,528,850,188,46
+25,Boeing 757,Boeing 757-200,large,1982-12-01,2012,30,185,25,90,45,528,850,163,34
+26,British Aerospace BAe 146,BAe 146-200,small,1983-02-01,2013,30,85,10,40,20,464,747,143,27
+27,de Havilland Canada Dash 8,de Havilland Canada DHC-8-200B,small,1984-10-23,never,30,40,5,15,10,280,451,79,12
+28,Fokker 100,Fokker 100,small,1988-02-01,2018,30,105,10,50,25,464,747,133,23
+29,Airbus A320,Airbus A320-200,large,1988-03-01,never,30,150,20,75,40,512,824,134,32
+30,ATR 72,ATR 72-600,small,1989-10-01,never,30,70,5,30,15,320,515,81,16
+31,Bombardier CRJ,Bombardier CRJ200,small,1992-10-01,never,30,50,5,20,10,512,824,104,17
+32,Airbus A330,Airbus A330-300,large,1993-12-30,never,30,335,75,175,90,544,875,187,50
+33,Boeing 777,Boeing 777-200ER,large,1995-05-15,never,30,300,75,225,115,560,901,206,59
+34,Boeing 737NG,Boeing 737-800,large,1997-12-01,never,30,160,20,80,40,512,824,139,31
+35,Sikorsky S-92,Sikorsky S-92A,helicopter,2004-09-01,never,30,22,5,15,5,168,270,70,13
+36,Embraer E190,Embraer 190STD,small,2005-08-01,never,30,110,10,50,25,512,824,120,24
+37,Airbus A380,Airbus A380-800,large,2007-10-10,never,30,500,85,355,180,560,901,233,79
+38,Boeing 787,Boeing 787-9,large,2011-11-01,never,30,280,85,210,105,560,901,186,62
+39,Airbus A350,Airbus A350-900,large,2014-12-22,never,30,330,80,215,105,560,901,202,68
+40,Airbus A320neo,Airbus A320neo,large,2016-01-15,never,30,150,20,70,35,512,824,126,33
+41,Boeing 737 MAX,Boeing 737 MAX 8,large,2017-05-16,never,30,160,20,85,45,512,824,132,35

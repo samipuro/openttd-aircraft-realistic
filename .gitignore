@@ -1,0 +1,28 @@
+# Private sources (own private repository): tools, notes, AirwaySim extractor and reference models. Never commit here.
+/private/
+
+# Build output.
+*.grf
+*.tar
+/build/
+
+# Generated intermediate files.
+*.nml.tmp
+/gfx/renders/tmp/
+
+# Blender backups.
+*.blend1
+*.blend2
+
+# Python.
+__pycache__/
+*.pyc
+.venv/
+
+# OS files.
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# NML cache next to the public GRF source.
+/src/.nmlcache

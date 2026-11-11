@@ -1,0 +1,17 @@
+Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported (CC BY-NC-SA 3.0)
+
+Copyright (c) 2026 Sami Puro
+
+This license covers the code, the NML source, the aircraft data values and the texts of this aircraft set. It does not cover the aircraft graphics; see "Aircraft graphics" below.
+
+This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/3.0/.
+
+In short, you may copy and redistribute this work and adapt it, under these terms:
+- Attribution: give appropriate credit to Sami Puro, provide a link to the license, and indicate if changes were made.
+- NonCommercial: you may not use the work for commercial purposes.
+- ShareAlike: if you remix, transform or build upon the work, you must distribute your contributions under the same license.
+This summary is not a substitute for the license itself; the full legal code is at https://creativecommons.org/licenses/by-nc-sa/3.0/legalcode.
+
+Aircraft graphics
+
+The aircraft graphics (the sprite images in src/gfx and the previews in docs/previews) are rendered from third-party 3D models from 3D Warehouse (used under the 3D Warehouse General Model License). They are not covered by the CC BY-NC-SA 3.0 license above, and the rights in the 3D models remain with their owners. The graphics may be used and redistributed, including through the OpenTTD content service, only as part of this aircraft set.

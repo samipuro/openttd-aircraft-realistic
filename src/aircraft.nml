@@ -1,0 +1,4843 @@
+// Generated from data/aircraft.csv. Do not edit by hand.
+grf {
+    grfid: "ARR\01";
+    name: string(STR_GRF_NAME);
+    desc: string(STR_GRF_DESC);
+    url: string(STR_GRF_URL);
+    version: 1;
+    min_compatible_version: 1;
+}
+
+cargotable { PASS, MAIL, GOOD, VALU, GOLD, DIAM }
+
+// Share the engine ID scope with Original vehicle names when it is used, so both sets address the same default aircraft in any load order.
+if (grf_future_status("\66\72\4F\4E")) {
+    engine_override("\66\72\4F\4E");
+}
+
+// Remove all default aircraft from every climate.
+disable_item(FEAT_AIRCRAFT);
+
+switch (FEAT_AIRCRAFT, SELF, sw_callback_failed, 0) {
+    return CB_FAILED;
+}
+
+spriteset (ss_aircraft_101, "gfx/1_1x.png") {
+    [2, 2, 36, 12, -18, -7]
+    [40, 2, 27, 14, -11, -9]
+    [69, 2, 24, 19, -12, -10]
+    [95, 2, 27, 15, -11, -7]
+    [124, 2, 36, 13, -18, -6]
+    [162, 2, 27, 15, -16, -7]
+    [191, 2, 24, 19, -12, -10]
+    [217, 2, 27, 14, -16, -9]
+}
+alternative_sprites (ss_aircraft_101, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/1_4x.png", "gfx/1_4x_mask.png") {
+    [8, 8, 152, 55, -76, -29]
+    [168, 8, 117, 60, -48, -37]
+    [293, 8, 100, 80, -50, -41]
+    [401, 8, 117, 67, -48, -32]
+    [526, 8, 152, 67, -76, -37]
+    [686, 8, 117, 67, -69, -32]
+    [811, 8, 100, 80, -50, -41]
+    [919, 8, 117, 60, -69, -37]
+}
+spriteset (ss_aircraft_101_ground, "gfx/1_ground_1x.png") {
+    [2, 2, 36, 14, -18, -8]
+    [40, 2, 27, 15, -11, -9]
+    [69, 2, 24, 18, -12, -10]
+    [95, 2, 26, 13, -10, -6]
+    [123, 2, 36, 10, -18, -5]
+    [161, 2, 26, 13, -16, -6]
+    [189, 2, 24, 18, -12, -10]
+    [215, 2, 27, 15, -16, -9]
+}
+alternative_sprites (ss_aircraft_101_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/1_ground_4x.png", "gfx/1_ground_4x_mask.png") {
+    [8, 8, 152, 68, -76, -36]
+    [168, 8, 117, 68, -48, -40]
+    [293, 8, 101, 81, -51, -44]
+    [402, 8, 117, 59, -48, -27]
+    [527, 8, 152, 57, -76, -32]
+    [687, 8, 117, 59, -69, -27]
+    [812, 8, 101, 81, -50, -44]
+    [921, 8, 117, 68, -69, -40]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_101, flight_state) {
+    0x00..0x0E: ss_aircraft_101_ground;
+    0x14..0x16: ss_aircraft_101_ground;
+    ss_aircraft_101;
+}
+// Junkers Ju 52.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_101, cargo_type_in_veh) {
+    MAIL: return 10;
+    GOOD: return 10;
+    VALU: return 5;
+    GOLD: return 5;
+    DIAM: return 5;
+    return 15;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_101, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_101, 101) {
+    property {
+        name: string(STR_NAME_101);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1930, 9, 11);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 20;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 8;
+        running_cost_factor: 41;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 136 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_SMALL;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_PROPELLER;
+        passenger_capacity: 15;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_101;
+        mail_capacity: sw_mail_101;
+        purchase_passenger_capacity: 15;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_101;
+        default: sw_graphics_101;
+    }
+}
+
+spriteset (ss_aircraft_102, "gfx/2_1x.png") {
+    [2, 2, 36, 13, -18, -7]
+    [40, 2, 26, 13, -12, -7]
+    [68, 2, 25, 18, -12, -9]
+    [95, 2, 26, 15, -12, -8]
+    [123, 2, 34, 13, -17, -7]
+    [159, 2, 26, 15, -14, -8]
+    [187, 2, 25, 18, -13, -9]
+    [214, 2, 26, 13, -14, -7]
+}
+alternative_sprites (ss_aircraft_102, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/2_4x.png", "gfx/2_4x_mask.png") {
+    [8, 8, 152, 56, -76, -31]
+    [168, 8, 111, 58, -51, -32]
+    [287, 8, 108, 79, -53, -40]
+    [403, 8, 112, 68, -51, -37]
+    [523, 8, 152, 71, -76, -42]
+    [683, 8, 111, 68, -60, -37]
+    [802, 8, 108, 79, -55, -40]
+    [918, 8, 111, 58, -60, -32]
+}
+spriteset (ss_aircraft_102_tail1, "gfx/2_tail1_1x.png") {
+    [2, 2, 36, 13, -18, -7]
+    [40, 2, 26, 13, -12, -7]
+    [68, 2, 25, 18, -12, -9]
+    [95, 2, 26, 15, -12, -8]
+    [123, 2, 34, 13, -17, -7]
+    [159, 2, 26, 15, -14, -8]
+    [187, 2, 25, 18, -13, -9]
+    [214, 2, 26, 13, -14, -7]
+}
+alternative_sprites (ss_aircraft_102_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/2_tail1_4x.png", "gfx/2_tail1_4x_mask.png") {
+    [8, 8, 152, 56, -76, -31]
+    [168, 8, 111, 58, -51, -32]
+    [287, 8, 108, 79, -53, -40]
+    [403, 8, 112, 68, -51, -37]
+    [523, 8, 152, 71, -76, -42]
+    [683, 8, 111, 68, -60, -37]
+    [802, 8, 108, 79, -55, -40]
+    [918, 8, 111, 58, -60, -32]
+}
+spriteset (ss_aircraft_102_tail2, "gfx/2_tail2_1x.png") {
+    [2, 2, 36, 13, -18, -7]
+    [40, 2, 26, 13, -12, -7]
+    [68, 2, 25, 18, -12, -9]
+    [95, 2, 26, 15, -12, -8]
+    [123, 2, 34, 13, -17, -7]
+    [159, 2, 26, 15, -14, -8]
+    [187, 2, 25, 18, -13, -9]
+    [214, 2, 26, 13, -14, -7]
+}
+alternative_sprites (ss_aircraft_102_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/2_tail2_4x.png", "gfx/2_tail2_4x_mask.png") {
+    [8, 8, 152, 56, -76, -31]
+    [168, 8, 111, 58, -51, -32]
+    [287, 8, 108, 79, -53, -40]
+    [403, 8, 112, 68, -51, -37]
+    [523, 8, 152, 71, -76, -42]
+    [683, 8, 111, 68, -60, -37]
+    [802, 8, 108, 79, -55, -40]
+    [918, 8, 111, 58, -60, -32]
+}
+spriteset (ss_aircraft_102_tail3, "gfx/2_tail3_1x.png") {
+    [2, 2, 36, 13, -18, -7]
+    [40, 2, 26, 13, -12, -7]
+    [68, 2, 25, 18, -12, -9]
+    [95, 2, 26, 15, -12, -8]
+    [123, 2, 34, 13, -17, -7]
+    [159, 2, 26, 15, -14, -8]
+    [187, 2, 25, 18, -13, -9]
+    [214, 2, 26, 13, -14, -7]
+}
+alternative_sprites (ss_aircraft_102_tail3, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/2_tail3_4x.png", "gfx/2_tail3_4x_mask.png") {
+    [8, 8, 152, 56, -76, -31]
+    [168, 8, 111, 58, -51, -32]
+    [287, 8, 108, 79, -53, -40]
+    [403, 8, 112, 68, -51, -37]
+    [523, 8, 152, 71, -76, -42]
+    [683, 8, 111, 68, -60, -37]
+    [802, 8, 108, 79, -55, -40]
+    [918, 8, 111, 58, -60, -32]
+}
+spriteset (ss_aircraft_102_tail4, "gfx/2_tail4_1x.png") {
+    [2, 2, 36, 13, -18, -7]
+    [40, 2, 26, 13, -12, -7]
+    [68, 2, 25, 18, -12, -9]
+    [95, 2, 26, 15, -12, -8]
+    [123, 2, 34, 13, -17, -7]
+    [159, 2, 26, 15, -14, -8]
+    [187, 2, 25, 18, -13, -9]
+    [214, 2, 26, 13, -14, -7]
+}
+alternative_sprites (ss_aircraft_102_tail4, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/2_tail4_4x.png", "gfx/2_tail4_4x_mask.png") {
+    [8, 8, 152, 56, -76, -31]
+    [168, 8, 111, 58, -51, -32]
+    [287, 8, 108, 79, -53, -40]
+    [403, 8, 112, 68, -51, -37]
+    [523, 8, 152, 71, -76, -42]
+    [683, 8, 111, 68, -60, -37]
+    [802, 8, 108, 79, -55, -40]
+    [918, 8, 111, 58, -60, -32]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_spin_102, var[0x97, 0, 0xFF] % 4) {
+    0: ss_aircraft_102_tail1;
+    1: ss_aircraft_102_tail2;
+    2: ss_aircraft_102_tail3;
+    ss_aircraft_102_tail4;
+}
+spriteset (ss_aircraft_102_ground, "gfx/2_ground_1x.png") {
+    [2, 2, 36, 15, -18, -8]
+    [40, 2, 26, 15, -12, -8]
+    [68, 2, 26, 18, -13, -9]
+    [96, 2, 26, 14, -12, -7]
+    [124, 2, 34, 10, -17, -5]
+    [160, 2, 26, 14, -14, -7]
+    [188, 2, 26, 18, -13, -9]
+    [216, 2, 26, 15, -14, -8]
+}
+alternative_sprites (ss_aircraft_102_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/2_ground_4x.png", "gfx/2_ground_4x_mask.png") {
+    [8, 8, 152, 69, -76, -37]
+    [168, 8, 111, 64, -51, -33]
+    [287, 8, 108, 79, -54, -41]
+    [403, 8, 110, 61, -50, -31]
+    [521, 8, 152, 63, -76, -36]
+    [681, 8, 111, 61, -60, -31]
+    [800, 8, 108, 79, -54, -41]
+    [916, 8, 110, 64, -60, -33]
+}
+spriteset (ss_aircraft_102_ground_tail1, "gfx/2_ground_tail1_1x.png") {
+    [2, 2, 36, 15, -18, -8]
+    [40, 2, 26, 15, -12, -8]
+    [68, 2, 26, 18, -13, -9]
+    [96, 2, 26, 14, -12, -7]
+    [124, 2, 34, 11, -17, -5]
+    [160, 2, 26, 14, -14, -7]
+    [188, 2, 26, 18, -13, -9]
+    [216, 2, 26, 15, -14, -8]
+}
+alternative_sprites (ss_aircraft_102_ground_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/2_ground_tail1_4x.png", "gfx/2_ground_tail1_4x_mask.png") {
+    [8, 8, 152, 69, -76, -37]
+    [168, 8, 111, 64, -51, -33]
+    [287, 8, 108, 79, -54, -41]
+    [403, 8, 110, 61, -50, -31]
+    [521, 8, 152, 63, -76, -36]
+    [681, 8, 111, 61, -60, -31]
+    [800, 8, 108, 79, -54, -41]
+    [916, 8, 110, 64, -60, -33]
+}
+spriteset (ss_aircraft_102_ground_tail2, "gfx/2_ground_tail2_1x.png") {
+    [2, 2, 36, 15, -18, -8]
+    [40, 2, 26, 15, -12, -8]
+    [68, 2, 26, 18, -13, -9]
+    [96, 2, 26, 14, -12, -7]
+    [124, 2, 34, 11, -17, -5]
+    [160, 2, 26, 14, -14, -7]
+    [188, 2, 26, 18, -13, -9]
+    [216, 2, 26, 15, -14, -8]
+}
+alternative_sprites (ss_aircraft_102_ground_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/2_ground_tail2_4x.png", "gfx/2_ground_tail2_4x_mask.png") {
+    [8, 8, 152, 69, -76, -37]
+    [168, 8, 111, 64, -51, -33]
+    [287, 8, 108, 79, -54, -41]
+    [403, 8, 110, 61, -50, -31]
+    [521, 8, 152, 62, -76, -36]
+    [681, 8, 111, 61, -60, -31]
+    [800, 8, 108, 79, -54, -41]
+    [916, 8, 110, 64, -60, -33]
+}
+spriteset (ss_aircraft_102_ground_tail3, "gfx/2_ground_tail3_1x.png") {
+    [2, 2, 36, 15, -18, -8]
+    [40, 2, 26, 15, -12, -8]
+    [68, 2, 26, 18, -13, -9]
+    [96, 2, 26, 14, -12, -7]
+    [124, 2, 34, 11, -17, -5]
+    [160, 2, 26, 14, -14, -7]
+    [188, 2, 26, 18, -13, -9]
+    [216, 2, 26, 15, -14, -8]
+}
+alternative_sprites (ss_aircraft_102_ground_tail3, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/2_ground_tail3_4x.png", "gfx/2_ground_tail3_4x_mask.png") {
+    [8, 8, 152, 69, -76, -37]
+    [168, 8, 111, 64, -51, -33]
+    [287, 8, 108, 79, -54, -41]
+    [403, 8, 110, 61, -50, -31]
+    [521, 8, 152, 61, -76, -36]
+    [681, 8, 111, 61, -60, -31]
+    [800, 8, 108, 79, -54, -41]
+    [916, 8, 110, 64, -60, -33]
+}
+spriteset (ss_aircraft_102_ground_tail4, "gfx/2_ground_tail4_1x.png") {
+    [2, 2, 36, 15, -18, -8]
+    [40, 2, 26, 15, -12, -8]
+    [68, 2, 26, 18, -13, -9]
+    [96, 2, 26, 14, -12, -7]
+    [124, 2, 34, 11, -17, -5]
+    [160, 2, 26, 14, -14, -7]
+    [188, 2, 26, 18, -13, -9]
+    [216, 2, 26, 15, -14, -8]
+}
+alternative_sprites (ss_aircraft_102_ground_tail4, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/2_ground_tail4_4x.png", "gfx/2_ground_tail4_4x_mask.png") {
+    [8, 8, 152, 69, -76, -37]
+    [168, 8, 111, 64, -51, -33]
+    [287, 8, 108, 79, -54, -41]
+    [403, 8, 110, 61, -50, -31]
+    [521, 8, 152, 62, -76, -36]
+    [681, 8, 111, 61, -60, -31]
+    [800, 8, 108, 79, -54, -41]
+    [916, 8, 110, 64, -60, -33]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_ground_spin_102, (var[0x9A, 0, 0xFF] + 2 * var[0x9C, 0, 0xFF]) % 4) {
+    0: ss_aircraft_102_ground_tail1;
+    1: ss_aircraft_102_ground_tail2;
+    2: ss_aircraft_102_ground_tail3;
+    ss_aircraft_102_ground_tail4;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_102, flight_state) {
+    0x00: ss_aircraft_102_ground;
+    0x02..0x04: ss_aircraft_102_ground;
+    0x01: sw_ground_spin_102;
+    0x05..0x0E: sw_ground_spin_102;
+    0x14..0x16: sw_ground_spin_102;
+    sw_spin_102;
+}
+// Douglas DC-3.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_102, cargo_type_in_veh) {
+    MAIL: return 10;
+    GOOD: return 10;
+    VALU: return 5;
+    GOLD: return 5;
+    DIAM: return 5;
+    return 25;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_102, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_102, 102) {
+    property {
+        name: string(STR_NAME_102);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1936, 1, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 20;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 9;
+        running_cost_factor: 56;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 176 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_SMALL;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_PROPELLER;
+        passenger_capacity: 25;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_102;
+        mail_capacity: sw_mail_102;
+        purchase_passenger_capacity: 25;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_102;
+        default: sw_graphics_102;
+    }
+}
+
+spriteset (ss_aircraft_103, "gfx/3_1x.png") {
+    [2, 2, 46, 19, -23, -10]
+    [50, 2, 40, 21, -21, -11]
+    [92, 2, 42, 24, -21, -13]
+    [136, 2, 40, 23, -21, -14]
+    [178, 2, 46, 23, -23, -12]
+    [226, 2, 40, 23, -19, -14]
+    [268, 2, 42, 24, -21, -13]
+    [312, 2, 40, 21, -19, -11]
+}
+alternative_sprites (ss_aircraft_103, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/3_4x.png", "gfx/3_4x_mask.png") {
+    [8, 8, 190, 86, -95, -44]
+    [206, 8, 166, 89, -85, -47]
+    [380, 8, 174, 101, -87, -54]
+    [562, 8, 166, 100, -85, -61]
+    [736, 8, 190, 109, -95, -61]
+    [934, 8, 166, 100, -81, -61]
+    [1108, 8, 174, 101, -87, -54]
+    [1290, 8, 166, 89, -81, -47]
+}
+spriteset (ss_aircraft_103_tail1, "gfx/3_tail1_1x.png") {
+    [2, 2, 46, 19, -23, -10]
+    [50, 2, 40, 21, -21, -11]
+    [92, 2, 42, 24, -21, -13]
+    [136, 2, 40, 23, -21, -14]
+    [178, 2, 46, 23, -23, -12]
+    [226, 2, 40, 23, -19, -14]
+    [268, 2, 42, 24, -21, -13]
+    [312, 2, 40, 21, -19, -11]
+}
+alternative_sprites (ss_aircraft_103_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/3_tail1_4x.png", "gfx/3_tail1_4x_mask.png") {
+    [8, 8, 190, 86, -95, -44]
+    [206, 8, 166, 89, -85, -47]
+    [380, 8, 174, 101, -87, -54]
+    [562, 8, 166, 100, -85, -61]
+    [736, 8, 190, 109, -95, -61]
+    [934, 8, 166, 100, -81, -61]
+    [1108, 8, 174, 101, -87, -54]
+    [1290, 8, 166, 89, -81, -47]
+}
+spriteset (ss_aircraft_103_tail2, "gfx/3_tail2_1x.png") {
+    [2, 2, 46, 19, -23, -10]
+    [50, 2, 40, 21, -21, -11]
+    [92, 2, 42, 24, -21, -13]
+    [136, 2, 40, 24, -21, -14]
+    [178, 2, 46, 23, -23, -12]
+    [226, 2, 40, 23, -19, -14]
+    [268, 2, 42, 24, -21, -13]
+    [312, 2, 40, 21, -19, -11]
+}
+alternative_sprites (ss_aircraft_103_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/3_tail2_4x.png", "gfx/3_tail2_4x_mask.png") {
+    [8, 8, 190, 86, -95, -44]
+    [206, 8, 166, 89, -85, -47]
+    [380, 8, 174, 101, -87, -54]
+    [562, 8, 166, 101, -85, -61]
+    [736, 8, 190, 109, -95, -61]
+    [934, 8, 166, 100, -81, -61]
+    [1108, 8, 174, 101, -87, -54]
+    [1290, 8, 166, 89, -81, -47]
+}
+spriteset (ss_aircraft_103_tail3, "gfx/3_tail3_1x.png") {
+    [2, 2, 46, 19, -23, -10]
+    [50, 2, 40, 21, -21, -11]
+    [92, 2, 42, 24, -21, -13]
+    [136, 2, 40, 23, -21, -14]
+    [178, 2, 46, 23, -23, -12]
+    [226, 2, 40, 23, -19, -14]
+    [268, 2, 42, 24, -21, -13]
+    [312, 2, 40, 21, -19, -11]
+}
+alternative_sprites (ss_aircraft_103_tail3, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/3_tail3_4x.png", "gfx/3_tail3_4x_mask.png") {
+    [8, 8, 190, 86, -95, -44]
+    [206, 8, 166, 89, -85, -47]
+    [380, 8, 174, 101, -87, -54]
+    [562, 8, 166, 100, -85, -61]
+    [736, 8, 190, 109, -95, -61]
+    [934, 8, 166, 100, -81, -61]
+    [1108, 8, 174, 101, -87, -54]
+    [1290, 8, 166, 89, -81, -47]
+}
+spriteset (ss_aircraft_103_tail4, "gfx/3_tail4_1x.png") {
+    [2, 2, 46, 19, -23, -10]
+    [50, 2, 40, 21, -21, -11]
+    [92, 2, 42, 24, -21, -13]
+    [136, 2, 40, 23, -21, -14]
+    [178, 2, 46, 23, -23, -12]
+    [226, 2, 40, 24, -19, -14]
+    [268, 2, 42, 24, -21, -13]
+    [312, 2, 40, 21, -19, -11]
+}
+alternative_sprites (ss_aircraft_103_tail4, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/3_tail4_4x.png", "gfx/3_tail4_4x_mask.png") {
+    [8, 8, 190, 86, -95, -44]
+    [206, 8, 166, 89, -85, -47]
+    [380, 8, 174, 101, -87, -54]
+    [562, 8, 166, 100, -85, -61]
+    [736, 8, 190, 109, -95, -61]
+    [934, 8, 166, 101, -81, -61]
+    [1108, 8, 174, 101, -87, -54]
+    [1290, 8, 166, 89, -81, -47]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_spin_103, var[0x97, 0, 0xFF] % 4) {
+    0: ss_aircraft_103_tail1;
+    1: ss_aircraft_103_tail2;
+    2: ss_aircraft_103_tail3;
+    ss_aircraft_103_tail4;
+}
+spriteset (ss_aircraft_103_ground, "gfx/3_ground_1x.png") {
+    [2, 2, 46, 19, -23, -10]
+    [50, 2, 40, 21, -21, -11]
+    [92, 2, 42, 24, -21, -13]
+    [136, 2, 40, 24, -21, -14]
+    [178, 2, 46, 23, -23, -12]
+    [226, 2, 40, 24, -19, -14]
+    [268, 2, 42, 24, -21, -13]
+    [312, 2, 40, 21, -19, -11]
+}
+alternative_sprites (ss_aircraft_103_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/3_ground_4x.png", "gfx/3_ground_4x_mask.png") {
+    [8, 8, 190, 86, -95, -44]
+    [206, 8, 166, 89, -85, -47]
+    [380, 8, 174, 101, -87, -54]
+    [562, 8, 166, 106, -85, -61]
+    [736, 8, 190, 116, -95, -61]
+    [934, 8, 166, 106, -81, -61]
+    [1108, 8, 174, 101, -87, -54]
+    [1290, 8, 166, 89, -81, -47]
+}
+spriteset (ss_aircraft_103_ground_tail1, "gfx/3_ground_tail1_1x.png") {
+    [2, 2, 46, 19, -23, -10]
+    [50, 2, 40, 21, -21, -11]
+    [92, 2, 42, 24, -21, -13]
+    [136, 2, 40, 24, -21, -14]
+    [178, 2, 46, 23, -23, -12]
+    [226, 2, 40, 24, -19, -14]
+    [268, 2, 42, 24, -21, -13]
+    [312, 2, 40, 21, -19, -11]
+}
+alternative_sprites (ss_aircraft_103_ground_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/3_ground_tail1_4x.png", "gfx/3_ground_tail1_4x_mask.png") {
+    [8, 8, 190, 86, -95, -44]
+    [206, 8, 166, 89, -85, -47]
+    [380, 8, 174, 101, -87, -54]
+    [562, 8, 166, 106, -85, -61]
+    [736, 8, 190, 116, -95, -61]
+    [934, 8, 166, 106, -81, -61]
+    [1108, 8, 174, 101, -87, -54]
+    [1290, 8, 166, 89, -81, -47]
+}
+spriteset (ss_aircraft_103_ground_tail2, "gfx/3_ground_tail2_1x.png") {
+    [2, 2, 46, 19, -23, -10]
+    [50, 2, 40, 21, -21, -11]
+    [92, 2, 42, 24, -21, -13]
+    [136, 2, 40, 24, -21, -14]
+    [178, 2, 46, 23, -23, -12]
+    [226, 2, 40, 24, -19, -14]
+    [268, 2, 42, 24, -21, -13]
+    [312, 2, 40, 21, -19, -11]
+}
+alternative_sprites (ss_aircraft_103_ground_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/3_ground_tail2_4x.png", "gfx/3_ground_tail2_4x_mask.png") {
+    [8, 8, 190, 86, -95, -44]
+    [206, 8, 166, 89, -85, -47]
+    [380, 8, 174, 101, -87, -54]
+    [562, 8, 166, 106, -85, -61]
+    [736, 8, 190, 116, -95, -61]
+    [934, 8, 166, 106, -81, -61]
+    [1108, 8, 174, 101, -87, -54]
+    [1290, 8, 166, 89, -81, -47]
+}
+spriteset (ss_aircraft_103_ground_tail3, "gfx/3_ground_tail3_1x.png") {
+    [2, 2, 46, 19, -23, -10]
+    [50, 2, 40, 21, -21, -11]
+    [92, 2, 42, 24, -21, -13]
+    [136, 2, 40, 24, -21, -14]
+    [178, 2, 46, 23, -23, -12]
+    [226, 2, 40, 24, -19, -14]
+    [268, 2, 42, 24, -21, -13]
+    [312, 2, 40, 21, -19, -11]
+}
+alternative_sprites (ss_aircraft_103_ground_tail3, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/3_ground_tail3_4x.png", "gfx/3_ground_tail3_4x_mask.png") {
+    [8, 8, 190, 86, -95, -44]
+    [206, 8, 166, 89, -85, -47]
+    [380, 8, 174, 101, -87, -54]
+    [562, 8, 166, 106, -85, -61]
+    [736, 8, 190, 116, -95, -61]
+    [934, 8, 166, 106, -81, -61]
+    [1108, 8, 174, 101, -87, -54]
+    [1290, 8, 166, 89, -81, -47]
+}
+spriteset (ss_aircraft_103_ground_tail4, "gfx/3_ground_tail4_1x.png") {
+    [2, 2, 46, 19, -23, -10]
+    [50, 2, 40, 21, -21, -11]
+    [92, 2, 42, 24, -21, -13]
+    [136, 2, 40, 24, -21, -14]
+    [178, 2, 46, 23, -23, -12]
+    [226, 2, 40, 24, -19, -14]
+    [268, 2, 42, 24, -21, -13]
+    [312, 2, 40, 21, -19, -11]
+}
+alternative_sprites (ss_aircraft_103_ground_tail4, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/3_ground_tail4_4x.png", "gfx/3_ground_tail4_4x_mask.png") {
+    [8, 8, 190, 86, -95, -44]
+    [206, 8, 166, 89, -85, -47]
+    [380, 8, 174, 101, -87, -54]
+    [562, 8, 166, 106, -85, -61]
+    [736, 8, 190, 116, -95, -61]
+    [934, 8, 166, 106, -81, -61]
+    [1108, 8, 174, 101, -87, -54]
+    [1290, 8, 166, 89, -81, -47]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_ground_spin_103, (var[0x9A, 0, 0xFF] + 2 * var[0x9C, 0, 0xFF]) % 4) {
+    0: ss_aircraft_103_ground_tail1;
+    1: ss_aircraft_103_ground_tail2;
+    2: ss_aircraft_103_ground_tail3;
+    ss_aircraft_103_ground_tail4;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_103, flight_state) {
+    0x00: ss_aircraft_103_ground;
+    0x02..0x04: ss_aircraft_103_ground;
+    0x01: sw_ground_spin_103;
+    0x05..0x0E: sw_ground_spin_103;
+    0x14..0x16: sw_ground_spin_103;
+    sw_spin_103;
+}
+// Lockheed Constellation.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_103, cargo_type_in_veh) {
+    MAIL: return 35;
+    GOOD: return 35;
+    VALU: return 20;
+    GOLD: return 20;
+    DIAM: return 20;
+    return 85;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_103, cargo_type_in_veh) {
+    PASS: return 10;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_103, 103) {
+    property {
+        name: string(STR_NAME_103);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1946, 2, 5);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 20;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 21;
+        running_cost_factor: 121;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 336 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_PROPELLER;
+        passenger_capacity: 85;
+        mail_capacity: 10;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_103;
+        mail_capacity: sw_mail_103;
+        purchase_passenger_capacity: 85;
+        purchase_mail_capacity: 10;
+        purchase: ss_aircraft_103;
+        default: sw_graphics_103;
+    }
+}
+
+spriteset (ss_aircraft_104, "gfx/4_1x.png") {
+    [2, 2, 40, 19, -20, -10]
+    [44, 2, 33, 17, -19, -8]
+    [79, 2, 40, 20, -20, -10]
+    [121, 2, 32, 20, -18, -12]
+    [155, 2, 38, 23, -19, -12]
+    [195, 2, 32, 20, -14, -12]
+    [229, 2, 40, 20, -20, -10]
+    [271, 2, 33, 17, -14, -8]
+}
+alternative_sprites (ss_aircraft_104, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/4_4x.png", "gfx/4_4x_mask.png") {
+    [8, 8, 164, 85, -82, -44]
+    [180, 8, 139, 72, -78, -33]
+    [327, 8, 168, 84, -84, -41]
+    [503, 8, 139, 86, -78, -51]
+    [650, 8, 164, 105, -82, -59]
+    [822, 8, 139, 86, -61, -51]
+    [969, 8, 168, 84, -84, -41]
+    [1145, 8, 139, 72, -61, -33]
+}
+spriteset (ss_aircraft_104_ground, "gfx/4_ground_1x.png") {
+    [2, 2, 40, 19, -20, -10]
+    [44, 2, 33, 17, -19, -8]
+    [79, 2, 40, 20, -20, -10]
+    [121, 2, 32, 20, -18, -12]
+    [155, 2, 38, 23, -19, -12]
+    [195, 2, 32, 20, -14, -12]
+    [229, 2, 40, 20, -20, -10]
+    [271, 2, 33, 17, -14, -8]
+}
+alternative_sprites (ss_aircraft_104_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/4_ground_4x.png", "gfx/4_ground_4x_mask.png") {
+    [8, 8, 164, 85, -82, -44]
+    [180, 8, 139, 72, -78, -33]
+    [327, 8, 168, 84, -84, -41]
+    [503, 8, 139, 88, -78, -51]
+    [650, 8, 164, 106, -82, -59]
+    [822, 8, 139, 89, -61, -51]
+    [969, 8, 168, 84, -84, -41]
+    [1145, 8, 139, 72, -61, -33]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_104, flight_state) {
+    0x00..0x0E: ss_aircraft_104_ground;
+    0x14..0x16: ss_aircraft_104_ground;
+    ss_aircraft_104;
+}
+// de Havilland D.H.106 Comet.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_104, cargo_type_in_veh) {
+    MAIL: return 35;
+    GOOD: return 35;
+    VALU: return 15;
+    GOLD: return 15;
+    DIAM: return 15;
+    return 80;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_104, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_104, 104) {
+    property {
+        name: string(STR_NAME_104);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1952, 2, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 20;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 25;
+        running_cost_factor: 189;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 512 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 80;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_104;
+        mail_capacity: sw_mail_104;
+        purchase_passenger_capacity: 80;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_104;
+        default: sw_graphics_104;
+    }
+}
+
+spriteset (ss_aircraft_105, "gfx/5_1x.png") {
+    [2, 2, 36, 15, -18, -8]
+    [40, 2, 29, 14, -15, -8]
+    [71, 2, 32, 19, -16, -10]
+    [105, 2, 29, 17, -15, -10]
+    [136, 2, 36, 18, -18, -9]
+    [174, 2, 29, 17, -14, -10]
+    [205, 2, 32, 19, -16, -10]
+    [239, 2, 29, 14, -14, -8]
+}
+alternative_sprites (ss_aircraft_105, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/5_4x.png", "gfx/5_4x_mask.png") {
+    [8, 8, 150, 68, -75, -36]
+    [166, 8, 124, 60, -63, -34]
+    [298, 8, 138, 78, -69, -41]
+    [444, 8, 124, 76, -63, -46]
+    [576, 8, 150, 93, -75, -54]
+    [734, 8, 124, 76, -61, -46]
+    [866, 8, 138, 78, -69, -41]
+    [1012, 8, 124, 60, -61, -34]
+}
+spriteset (ss_aircraft_105_ground, "gfx/5_ground_1x.png") {
+    [2, 2, 36, 15, -18, -8]
+    [40, 2, 29, 14, -15, -8]
+    [71, 2, 32, 19, -16, -10]
+    [105, 2, 29, 17, -15, -10]
+    [136, 2, 36, 18, -18, -9]
+    [174, 2, 29, 17, -14, -10]
+    [205, 2, 32, 19, -16, -10]
+    [239, 2, 29, 14, -14, -8]
+}
+alternative_sprites (ss_aircraft_105_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/5_ground_4x.png", "gfx/5_ground_4x_mask.png") {
+    [8, 8, 150, 68, -75, -36]
+    [166, 8, 124, 60, -63, -34]
+    [298, 8, 138, 78, -69, -41]
+    [444, 8, 124, 76, -63, -46]
+    [576, 8, 150, 93, -75, -54]
+    [734, 8, 124, 76, -61, -46]
+    [866, 8, 138, 78, -69, -41]
+    [1012, 8, 124, 60, -61, -34]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_105, flight_state) {
+    0x00..0x0E: ss_aircraft_105_ground;
+    0x14..0x16: ss_aircraft_105_ground;
+    ss_aircraft_105;
+}
+// Vickers Viscount.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_105, cargo_type_in_veh) {
+    MAIL: return 30;
+    GOOD: return 30;
+    VALU: return 15;
+    GOLD: return 15;
+    DIAM: return 15;
+    return 65;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_105, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_105, 105) {
+    property {
+        name: string(STR_NAME_105);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1953, 4, 17);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 20;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 15;
+        running_cost_factor: 105;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 320 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_SMALL;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_PROPELLER;
+        passenger_capacity: 65;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_105;
+        mail_capacity: sw_mail_105;
+        purchase_passenger_capacity: 65;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_105;
+        default: sw_graphics_105;
+    }
+}
+
+spriteset (ss_aircraft_106, "gfx/6_1x.png") {
+    [2, 2, 36, 14, -18, -7]
+    [40, 2, 27, 14, -13, -9]
+    [69, 2, 32, 18, -16, -11]
+    [103, 2, 27, 18, -13, -12]
+    [132, 2, 36, 17, -18, -9]
+    [170, 2, 27, 18, -14, -12]
+    [199, 2, 32, 18, -16, -11]
+    [233, 2, 27, 14, -14, -9]
+}
+alternative_sprites (ss_aircraft_106, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/6_4x.png", "gfx/6_4x_mask.png") {
+    [8, 8, 152, 68, -76, -34]
+    [168, 8, 117, 65, -57, -40]
+    [293, 8, 132, 79, -66, -48]
+    [433, 8, 117, 78, -57, -50]
+    [558, 8, 152, 95, -76, -58]
+    [718, 8, 117, 78, -60, -50]
+    [843, 8, 132, 79, -66, -48]
+    [983, 8, 117, 65, -60, -40]
+}
+spriteset (ss_aircraft_106_tail1, "gfx/6_tail1_1x.png") {
+    [2, 2, 36, 14, -18, -7]
+    [40, 2, 27, 14, -13, -9]
+    [69, 2, 32, 18, -16, -11]
+    [103, 2, 27, 18, -13, -12]
+    [132, 2, 36, 17, -18, -9]
+    [170, 2, 27, 18, -14, -12]
+    [199, 2, 32, 18, -16, -11]
+    [233, 2, 27, 14, -14, -9]
+}
+alternative_sprites (ss_aircraft_106_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/6_tail1_4x.png", "gfx/6_tail1_4x_mask.png") {
+    [8, 8, 152, 68, -76, -34]
+    [168, 8, 117, 65, -57, -40]
+    [293, 8, 132, 79, -66, -48]
+    [433, 8, 117, 78, -57, -50]
+    [558, 8, 152, 95, -76, -58]
+    [718, 8, 117, 78, -60, -50]
+    [843, 8, 132, 79, -66, -48]
+    [983, 8, 117, 65, -60, -40]
+}
+spriteset (ss_aircraft_106_tail2, "gfx/6_tail2_1x.png") {
+    [2, 2, 36, 14, -18, -7]
+    [40, 2, 27, 14, -13, -9]
+    [69, 2, 32, 18, -16, -11]
+    [103, 2, 27, 18, -13, -12]
+    [132, 2, 36, 17, -18, -9]
+    [170, 2, 27, 18, -14, -12]
+    [199, 2, 32, 18, -16, -11]
+    [233, 2, 27, 14, -14, -9]
+}
+alternative_sprites (ss_aircraft_106_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/6_tail2_4x.png", "gfx/6_tail2_4x_mask.png") {
+    [8, 8, 152, 68, -76, -34]
+    [168, 8, 117, 65, -57, -40]
+    [293, 8, 132, 79, -66, -48]
+    [433, 8, 117, 78, -57, -50]
+    [558, 8, 152, 95, -76, -58]
+    [718, 8, 117, 78, -60, -50]
+    [843, 8, 132, 79, -66, -48]
+    [983, 8, 117, 65, -60, -40]
+}
+spriteset (ss_aircraft_106_tail3, "gfx/6_tail3_1x.png") {
+    [2, 2, 36, 14, -18, -7]
+    [40, 2, 27, 14, -13, -9]
+    [69, 2, 32, 18, -16, -11]
+    [103, 2, 27, 18, -13, -12]
+    [132, 2, 36, 17, -18, -9]
+    [170, 2, 27, 18, -14, -12]
+    [199, 2, 32, 18, -16, -11]
+    [233, 2, 27, 14, -14, -9]
+}
+alternative_sprites (ss_aircraft_106_tail3, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/6_tail3_4x.png", "gfx/6_tail3_4x_mask.png") {
+    [8, 8, 152, 68, -76, -34]
+    [168, 8, 117, 65, -57, -40]
+    [293, 8, 132, 79, -66, -48]
+    [433, 8, 117, 78, -57, -50]
+    [558, 8, 152, 95, -76, -58]
+    [718, 8, 117, 78, -60, -50]
+    [843, 8, 132, 79, -66, -48]
+    [983, 8, 117, 65, -60, -40]
+}
+spriteset (ss_aircraft_106_tail4, "gfx/6_tail4_1x.png") {
+    [2, 2, 36, 14, -18, -7]
+    [40, 2, 27, 14, -13, -9]
+    [69, 2, 32, 18, -16, -11]
+    [103, 2, 27, 18, -13, -12]
+    [132, 2, 36, 17, -18, -9]
+    [170, 2, 27, 18, -14, -12]
+    [199, 2, 32, 18, -16, -11]
+    [233, 2, 27, 14, -14, -9]
+}
+alternative_sprites (ss_aircraft_106_tail4, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/6_tail4_4x.png", "gfx/6_tail4_4x_mask.png") {
+    [8, 8, 152, 68, -76, -34]
+    [168, 8, 117, 65, -57, -40]
+    [293, 8, 132, 79, -66, -48]
+    [433, 8, 117, 78, -57, -50]
+    [558, 8, 152, 95, -76, -58]
+    [718, 8, 117, 78, -60, -50]
+    [843, 8, 132, 79, -66, -48]
+    [983, 8, 117, 65, -60, -40]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_spin_106, var[0x97, 0, 0xFF] % 4) {
+    0: ss_aircraft_106_tail1;
+    1: ss_aircraft_106_tail2;
+    2: ss_aircraft_106_tail3;
+    ss_aircraft_106_tail4;
+}
+spriteset (ss_aircraft_106_ground, "gfx/6_ground_1x.png") {
+    [2, 2, 36, 14, -18, -7]
+    [40, 2, 27, 14, -13, -9]
+    [69, 2, 32, 18, -16, -11]
+    [103, 2, 27, 19, -13, -12]
+    [132, 2, 36, 17, -18, -9]
+    [170, 2, 27, 19, -14, -12]
+    [199, 2, 32, 18, -16, -11]
+    [233, 2, 27, 14, -14, -9]
+}
+alternative_sprites (ss_aircraft_106_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/6_ground_4x.png", "gfx/6_ground_4x_mask.png") {
+    [8, 8, 152, 68, -76, -34]
+    [168, 8, 117, 65, -57, -40]
+    [293, 8, 132, 79, -66, -48]
+    [433, 8, 117, 82, -57, -50]
+    [558, 8, 152, 99, -76, -58]
+    [718, 8, 117, 82, -60, -50]
+    [843, 8, 132, 79, -66, -48]
+    [983, 8, 117, 65, -60, -40]
+}
+spriteset (ss_aircraft_106_ground_tail1, "gfx/6_ground_tail1_1x.png") {
+    [2, 2, 36, 14, -18, -7]
+    [40, 2, 27, 14, -13, -9]
+    [69, 2, 32, 18, -16, -11]
+    [103, 2, 27, 19, -13, -12]
+    [132, 2, 36, 17, -18, -9]
+    [170, 2, 27, 19, -14, -12]
+    [199, 2, 32, 18, -16, -11]
+    [233, 2, 27, 14, -14, -9]
+}
+alternative_sprites (ss_aircraft_106_ground_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/6_ground_tail1_4x.png", "gfx/6_ground_tail1_4x_mask.png") {
+    [8, 8, 152, 68, -76, -34]
+    [168, 8, 117, 65, -57, -40]
+    [293, 8, 132, 79, -66, -48]
+    [433, 8, 117, 82, -57, -50]
+    [558, 8, 152, 99, -76, -58]
+    [718, 8, 117, 82, -60, -50]
+    [843, 8, 132, 79, -66, -48]
+    [983, 8, 117, 65, -60, -40]
+}
+spriteset (ss_aircraft_106_ground_tail2, "gfx/6_ground_tail2_1x.png") {
+    [2, 2, 36, 14, -18, -7]
+    [40, 2, 27, 14, -13, -9]
+    [69, 2, 32, 18, -16, -11]
+    [103, 2, 27, 19, -13, -12]
+    [132, 2, 36, 17, -18, -9]
+    [170, 2, 27, 19, -14, -12]
+    [199, 2, 32, 18, -16, -11]
+    [233, 2, 27, 14, -14, -9]
+}
+alternative_sprites (ss_aircraft_106_ground_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/6_ground_tail2_4x.png", "gfx/6_ground_tail2_4x_mask.png") {
+    [8, 8, 152, 68, -76, -34]
+    [168, 8, 117, 65, -57, -40]
+    [293, 8, 132, 79, -66, -48]
+    [433, 8, 117, 82, -57, -50]
+    [558, 8, 152, 99, -76, -58]
+    [718, 8, 117, 82, -60, -50]
+    [843, 8, 132, 79, -66, -48]
+    [983, 8, 117, 65, -60, -40]
+}
+spriteset (ss_aircraft_106_ground_tail3, "gfx/6_ground_tail3_1x.png") {
+    [2, 2, 36, 14, -18, -7]
+    [40, 2, 27, 14, -13, -9]
+    [69, 2, 32, 18, -16, -11]
+    [103, 2, 27, 19, -13, -12]
+    [132, 2, 36, 17, -18, -9]
+    [170, 2, 27, 19, -14, -12]
+    [199, 2, 32, 18, -16, -11]
+    [233, 2, 27, 14, -14, -9]
+}
+alternative_sprites (ss_aircraft_106_ground_tail3, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/6_ground_tail3_4x.png", "gfx/6_ground_tail3_4x_mask.png") {
+    [8, 8, 152, 68, -76, -34]
+    [168, 8, 117, 65, -57, -40]
+    [293, 8, 132, 79, -66, -48]
+    [433, 8, 117, 82, -57, -50]
+    [558, 8, 152, 99, -76, -58]
+    [718, 8, 117, 82, -60, -50]
+    [843, 8, 132, 79, -66, -48]
+    [983, 8, 117, 65, -60, -40]
+}
+spriteset (ss_aircraft_106_ground_tail4, "gfx/6_ground_tail4_1x.png") {
+    [2, 2, 36, 14, -18, -7]
+    [40, 2, 27, 14, -13, -9]
+    [69, 2, 32, 18, -16, -11]
+    [103, 2, 27, 19, -13, -12]
+    [132, 2, 36, 17, -18, -9]
+    [170, 2, 27, 19, -14, -12]
+    [199, 2, 32, 18, -16, -11]
+    [233, 2, 27, 14, -14, -9]
+}
+alternative_sprites (ss_aircraft_106_ground_tail4, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/6_ground_tail4_4x.png", "gfx/6_ground_tail4_4x_mask.png") {
+    [8, 8, 152, 68, -76, -34]
+    [168, 8, 117, 65, -57, -40]
+    [293, 8, 132, 79, -66, -48]
+    [433, 8, 117, 82, -57, -50]
+    [558, 8, 152, 99, -76, -58]
+    [718, 8, 117, 82, -60, -50]
+    [843, 8, 132, 79, -66, -48]
+    [983, 8, 117, 65, -60, -40]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_ground_spin_106, (var[0x9A, 0, 0xFF] + 2 * var[0x9C, 0, 0xFF]) % 4) {
+    0: ss_aircraft_106_ground_tail1;
+    1: ss_aircraft_106_ground_tail2;
+    2: ss_aircraft_106_ground_tail3;
+    ss_aircraft_106_ground_tail4;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_106, flight_state) {
+    0x00: ss_aircraft_106_ground;
+    0x02..0x04: ss_aircraft_106_ground;
+    0x01: sw_ground_spin_106;
+    0x05..0x0E: sw_ground_spin_106;
+    0x14..0x16: sw_ground_spin_106;
+    sw_spin_106;
+}
+// Fokker F27 Friendship.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_106, cargo_type_in_veh) {
+    MAIL: return 25;
+    GOOD: return 25;
+    VALU: return 10;
+    GOLD: return 10;
+    DIAM: return 10;
+    return 45;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_106, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_106, 106) {
+    property {
+        name: string(STR_NAME_106);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1958, 3, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 10;
+        running_cost_factor: 87;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 280 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_SMALL;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_PROPELLER;
+        passenger_capacity: 45;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_106;
+        mail_capacity: sw_mail_106;
+        purchase_passenger_capacity: 45;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_106;
+        default: sw_graphics_106;
+    }
+}
+
+spriteset (ss_aircraft_107, "gfx/7_1x.png") {
+    [2, 2, 52, 27, -26, -15]
+    [56, 2, 47, 23, -26, -11]
+    [105, 2, 58, 26, -29, -14]
+    [165, 2, 47, 30, -26, -19]
+    [214, 2, 52, 31, -26, -16]
+    [268, 2, 47, 30, -21, -19]
+    [317, 2, 58, 26, -29, -14]
+    [377, 2, 47, 23, -21, -11]
+}
+alternative_sprites (ss_aircraft_107, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/7_4x.png", "gfx/7_4x_mask.png") {
+    [8, 8, 214, 115, -107, -62]
+    [230, 8, 195, 99, -110, -47]
+    [433, 8, 238, 111, -119, -60]
+    [679, 8, 193, 129, -108, -81]
+    [880, 8, 214, 158, -107, -95]
+    [1102, 8, 193, 129, -85, -81]
+    [1303, 8, 238, 111, -119, -60]
+    [1549, 8, 195, 99, -85, -47]
+}
+spriteset (ss_aircraft_107_ground, "gfx/7_ground_1x.png") {
+    [2, 2, 52, 27, -26, -15]
+    [56, 2, 47, 23, -26, -11]
+    [105, 2, 58, 26, -29, -14]
+    [165, 2, 47, 31, -26, -19]
+    [214, 2, 52, 31, -26, -16]
+    [268, 2, 47, 31, -21, -19]
+    [317, 2, 58, 26, -29, -14]
+    [377, 2, 47, 23, -21, -11]
+}
+alternative_sprites (ss_aircraft_107_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/7_ground_4x.png", "gfx/7_ground_4x_mask.png") {
+    [8, 8, 214, 115, -107, -62]
+    [230, 8, 195, 99, -110, -47]
+    [433, 8, 238, 111, -119, -60]
+    [679, 8, 193, 132, -108, -81]
+    [880, 8, 214, 159, -107, -95]
+    [1102, 8, 193, 132, -85, -81]
+    [1303, 8, 238, 111, -119, -60]
+    [1549, 8, 195, 99, -85, -47]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_107, flight_state) {
+    0x00..0x0E: ss_aircraft_107_ground;
+    0x14..0x16: ss_aircraft_107_ground;
+    ss_aircraft_107;
+}
+// Boeing 707.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_107, cargo_type_in_veh) {
+    MAIL: return 85;
+    GOOD: return 85;
+    VALU: return 45;
+    GOLD: return 45;
+    DIAM: return 45;
+    return 150;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_107, cargo_type_in_veh) {
+    PASS: return 25;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_107, 107) {
+    property {
+        name: string(STR_NAME_107);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1958, 10, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 29;
+        running_cost_factor: 246;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 544 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 150;
+        mail_capacity: 25;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_107;
+        mail_capacity: sw_mail_107;
+        purchase_passenger_capacity: 150;
+        purchase_mail_capacity: 25;
+        purchase: ss_aircraft_107;
+        default: sw_graphics_107;
+    }
+}
+
+spriteset (ss_aircraft_108, "gfx/8_1x.png") {
+    [2, 2, 42, 20, -21, -12]
+    [46, 2, 34, 18, -19, -9]
+    [82, 2, 42, 21, -21, -11]
+    [126, 2, 34, 22, -19, -15]
+    [162, 2, 42, 25, -21, -15]
+    [206, 2, 34, 22, -15, -15]
+    [242, 2, 42, 21, -21, -11]
+    [286, 2, 34, 18, -15, -9]
+}
+alternative_sprites (ss_aircraft_108, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/8_4x.png", "gfx/8_4x_mask.png") {
+    [8, 8, 178, 86, -89, -50]
+    [194, 8, 143, 80, -81, -39]
+    [345, 8, 172, 92, -86, -48]
+    [525, 8, 143, 94, -81, -64]
+    [676, 8, 178, 117, -89, -75]
+    [862, 8, 143, 94, -62, -64]
+    [1013, 8, 172, 92, -86, -48]
+    [1193, 8, 143, 80, -62, -39]
+}
+spriteset (ss_aircraft_108_ground, "gfx/8_ground_1x.png") {
+    [2, 2, 42, 20, -21, -12]
+    [46, 2, 34, 18, -19, -9]
+    [82, 2, 42, 21, -21, -11]
+    [126, 2, 34, 22, -19, -15]
+    [162, 2, 42, 25, -21, -15]
+    [206, 2, 34, 22, -15, -15]
+    [242, 2, 42, 21, -21, -11]
+    [286, 2, 34, 18, -15, -9]
+}
+alternative_sprites (ss_aircraft_108_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/8_ground_4x.png", "gfx/8_ground_4x_mask.png") {
+    [8, 8, 178, 86, -89, -50]
+    [194, 8, 143, 80, -81, -39]
+    [345, 8, 172, 92, -86, -48]
+    [525, 8, 143, 97, -81, -64]
+    [676, 8, 178, 118, -89, -75]
+    [862, 8, 143, 97, -62, -64]
+    [1013, 8, 172, 92, -86, -48]
+    [1193, 8, 143, 80, -62, -39]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_108, flight_state) {
+    0x00..0x0E: ss_aircraft_108_ground;
+    0x14..0x16: ss_aircraft_108_ground;
+    ss_aircraft_108;
+}
+// Sud Aviation SE-210 Caravelle.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_108, cargo_type_in_veh) {
+    MAIL: return 35;
+    GOOD: return 35;
+    VALU: return 15;
+    GOLD: return 15;
+    DIAM: return 15;
+    return 75;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_108, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_108, 108) {
+    property {
+        name: string(STR_NAME_108);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1959, 6, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 18;
+        running_cost_factor: 176;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 512 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 75;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_108;
+        mail_capacity: sw_mail_108;
+        purchase_passenger_capacity: 75;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_108;
+        default: sw_graphics_108;
+    }
+}
+
+spriteset (ss_aircraft_109, "gfx/9_1x.png") {
+    [2, 2, 50, 25, -25, -13]
+    [54, 2, 44, 21, -25, -10]
+    [100, 2, 54, 25, -27, -13]
+    [156, 2, 43, 29, -24, -18]
+    [201, 2, 50, 29, -25, -15]
+    [253, 2, 43, 29, -19, -18]
+    [298, 2, 54, 25, -27, -13]
+    [354, 2, 44, 21, -19, -10]
+}
+alternative_sprites (ss_aircraft_109, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/9_4x.png", "gfx/9_4x_mask.png") {
+    [8, 8, 204, 107, -102, -56]
+    [220, 8, 183, 90, -103, -42]
+    [411, 8, 221, 105, -110, -56]
+    [640, 8, 182, 121, -102, -75]
+    [830, 8, 204, 148, -102, -88]
+    [1042, 8, 182, 121, -80, -75]
+    [1232, 8, 221, 105, -111, -56]
+    [1461, 8, 183, 90, -80, -42]
+}
+spriteset (ss_aircraft_109_ground, "gfx/9_ground_1x.png") {
+    [2, 2, 50, 25, -25, -13]
+    [54, 2, 44, 21, -25, -10]
+    [100, 2, 54, 25, -27, -13]
+    [156, 2, 43, 30, -24, -18]
+    [201, 2, 50, 29, -25, -15]
+    [253, 2, 43, 30, -19, -18]
+    [298, 2, 54, 25, -27, -13]
+    [354, 2, 44, 21, -19, -10]
+}
+alternative_sprites (ss_aircraft_109_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/9_ground_4x.png", "gfx/9_ground_4x_mask.png") {
+    [8, 8, 204, 107, -102, -56]
+    [220, 8, 183, 90, -103, -42]
+    [411, 8, 221, 105, -110, -56]
+    [640, 8, 182, 125, -102, -75]
+    [830, 8, 204, 150, -102, -88]
+    [1042, 8, 182, 125, -80, -75]
+    [1232, 8, 221, 105, -111, -56]
+    [1461, 8, 183, 90, -80, -42]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_109, flight_state) {
+    0x00..0x0E: ss_aircraft_109_ground;
+    0x14..0x16: ss_aircraft_109_ground;
+    ss_aircraft_109;
+}
+// Douglas DC-8.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_109, cargo_type_in_veh) {
+    MAIL: return 70;
+    GOOD: return 70;
+    VALU: return 35;
+    GOLD: return 35;
+    DIAM: return 35;
+    return 160;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_109, cargo_type_in_veh) {
+    PASS: return 20;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_109, 109) {
+    property {
+        name: string(STR_NAME_109);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1959, 9, 18);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 30;
+        running_cost_factor: 225;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 528 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 160;
+        mail_capacity: 20;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_109;
+        mail_capacity: sw_mail_109;
+        purchase_passenger_capacity: 160;
+        purchase_mail_capacity: 20;
+        purchase: ss_aircraft_109;
+        default: sw_graphics_109;
+    }
+}
+
+spriteset (ss_aircraft_110, "gfx/10_1x.png") {
+    [2, 2, 7, 14, -3, -5]
+    [11, 2, 21, 10, -15, -4]
+    [34, 2, 27, 8, -20, -5]
+    [63, 2, 20, 16, -15, -12]
+    [85, 2, 7, 18, -4, -14]
+    [94, 2, 21, 15, -6, -11]
+    [117, 2, 27, 7, -7, -4]
+    [146, 2, 21, 10, -6, -4]
+}
+alternative_sprites (ss_aircraft_110, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/10_4x.png", "gfx/10_4x_mask.png") {
+    [8, 8, 36, 57, -16, -22]
+    [52, 8, 86, 46, -61, -20]
+    [146, 8, 114, 38, -82, -22]
+    [268, 8, 90, 65, -65, -47]
+    [366, 8, 36, 77, -20, -56]
+    [410, 8, 86, 63, -25, -45]
+    [504, 8, 114, 36, -32, -20]
+    [626, 8, 90, 48, -25, -21]
+}
+spriteset (ss_rotor_110, "gfx/10_rotor_1x.png") {
+    [2, 2, 11, 12, -5, -4]
+    [15, 2, 11, 12, -5, -4]
+    [28, 2, 14, 12, -8, -5]
+    [44, 2, 10, 11, -5, -3]
+}
+alternative_sprites (ss_rotor_110, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/10_rotor_4x.png", "gfx/10_rotor_4x_mask.png") {
+    [8, 8, 103, 55, -56, -21]
+    [119, 8, 103, 55, -56, -21]
+    [230, 8, 106, 55, -51, -22]
+    [344, 8, 107, 55, -52, -19]
+}
+spriteset (ss_aircraft_110_tail1, "gfx/10_tail1_1x.png") {
+    [2, 2, 7, 14, -3, -5]
+    [11, 2, 21, 10, -15, -4]
+    [34, 2, 27, 8, -20, -5]
+    [63, 2, 20, 15, -15, -11]
+    [85, 2, 7, 18, -4, -14]
+    [94, 2, 21, 15, -6, -11]
+    [117, 2, 27, 8, -7, -5]
+    [146, 2, 21, 10, -6, -4]
+}
+alternative_sprites (ss_aircraft_110_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/10_tail1_4x.png", "gfx/10_tail1_4x_mask.png") {
+    [8, 8, 36, 59, -16, -22]
+    [52, 8, 85, 46, -60, -20]
+    [145, 8, 113, 39, -81, -23]
+    [266, 8, 90, 64, -65, -46]
+    [364, 8, 36, 76, -20, -55]
+    [408, 8, 85, 62, -25, -44]
+    [501, 8, 113, 36, -32, -20]
+    [622, 8, 90, 48, -25, -21]
+}
+spriteset (ss_aircraft_110_tail2, "gfx/10_tail2_1x.png") {
+    [2, 2, 7, 14, -3, -5]
+    [11, 2, 21, 10, -15, -4]
+    [34, 2, 27, 8, -20, -5]
+    [63, 2, 20, 15, -15, -11]
+    [85, 2, 7, 18, -4, -14]
+    [94, 2, 21, 15, -6, -11]
+    [117, 2, 27, 8, -7, -5]
+    [146, 2, 21, 11, -6, -4]
+}
+alternative_sprites (ss_aircraft_110_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/10_tail2_4x.png", "gfx/10_tail2_4x_mask.png") {
+    [8, 8, 36, 58, -16, -22]
+    [52, 8, 86, 46, -61, -20]
+    [146, 8, 114, 39, -82, -23]
+    [268, 8, 90, 65, -65, -47]
+    [366, 8, 36, 78, -20, -57]
+    [410, 8, 86, 63, -25, -45]
+    [504, 8, 114, 36, -32, -20]
+    [626, 8, 90, 49, -25, -21]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_tail_110, var[0x46, 1, 0xFF] % 3) {
+    1: ss_aircraft_110_tail1;
+    2: ss_aircraft_110_tail2;
+    ss_aircraft_110;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_110, flight_state) {
+    0x00..0x0E: ss_aircraft_110;
+    sw_tail_110;
+}
+// Sikorsky S-61.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_110, cargo_type_in_veh) {
+    MAIL: return 10;
+    GOOD: return 10;
+    VALU: return 5;
+    GOLD: return 5;
+    DIAM: return 5;
+    return 30;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_110, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_110, 110) {
+    property {
+        name: string(STR_NAME_110);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1962, 1, 1);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 7;
+        running_cost_factor: 73;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 136 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_HELICOPTER;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_HELICOPTER;
+        passenger_capacity: 30;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_110;
+        mail_capacity: sw_mail_110;
+        purchase_passenger_capacity: 30;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_110;
+        rotor: ss_rotor_110;
+        default: sw_graphics_110;
+    }
+}
+
+spriteset (ss_aircraft_111, "gfx/11_1x.png") {
+    [2, 2, 38, 25, -19, -14]
+    [42, 2, 41, 21, -22, -10]
+    [85, 2, 53, 19, -26, -9]
+    [140, 2, 41, 27, -22, -17]
+    [183, 2, 38, 33, -19, -19]
+    [223, 2, 41, 27, -19, -17]
+    [266, 2, 53, 19, -27, -9]
+    [321, 2, 41, 21, -19, -10]
+}
+alternative_sprites (ss_aircraft_111, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/11_4x.png", "gfx/11_4x_mask.png") {
+    [8, 8, 160, 105, -80, -58]
+    [176, 8, 174, 92, -94, -44]
+    [358, 8, 224, 83, -112, -39]
+    [590, 8, 174, 118, -94, -73]
+    [772, 8, 160, 141, -80, -81]
+    [940, 8, 174, 118, -80, -73]
+    [1122, 8, 224, 83, -112, -39]
+    [1354, 8, 174, 92, -80, -44]
+}
+spriteset (ss_aircraft_111_ground, "gfx/11_ground_1x.png") {
+    [2, 2, 38, 25, -19, -14]
+    [42, 2, 41, 21, -22, -10]
+    [85, 2, 53, 19, -26, -9]
+    [140, 2, 41, 28, -22, -17]
+    [183, 2, 38, 33, -19, -19]
+    [223, 2, 41, 28, -19, -17]
+    [266, 2, 53, 19, -27, -9]
+    [321, 2, 41, 21, -19, -10]
+}
+alternative_sprites (ss_aircraft_111_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/11_ground_4x.png", "gfx/11_ground_4x_mask.png") {
+    [8, 8, 160, 105, -80, -58]
+    [176, 8, 174, 92, -94, -44]
+    [358, 8, 224, 83, -112, -39]
+    [590, 8, 174, 120, -94, -73]
+    [772, 8, 160, 141, -80, -81]
+    [940, 8, 174, 120, -80, -73]
+    [1122, 8, 224, 83, -112, -39]
+    [1354, 8, 174, 92, -80, -44]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_111, flight_state) {
+    0x00..0x0E: ss_aircraft_111_ground;
+    0x14..0x16: ss_aircraft_111_ground;
+    ss_aircraft_111;
+}
+// Boeing 727.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_111, cargo_type_in_veh) {
+    MAIL: return 75;
+    GOOD: return 75;
+    VALU: return 35;
+    GOLD: return 35;
+    DIAM: return 35;
+    return 140;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_111, cargo_type_in_veh) {
+    PASS: return 20;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_111, 111) {
+    property {
+        name: string(STR_NAME_111);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1964, 2, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 26;
+        running_cost_factor: 175;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 528 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 140;
+        mail_capacity: 20;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_111;
+        mail_capacity: sw_mail_111;
+        purchase_passenger_capacity: 140;
+        purchase_mail_capacity: 20;
+        purchase: ss_aircraft_111;
+        default: sw_graphics_111;
+    }
+}
+
+spriteset (ss_aircraft_112, "gfx/12_1x.png") {
+    [2, 2, 36, 17, -18, -10]
+    [40, 2, 31, 16, -17, -7]
+    [73, 2, 39, 17, -19, -8]
+    [114, 2, 31, 21, -17, -13]
+    [147, 2, 34, 24, -17, -14]
+    [183, 2, 31, 21, -14, -13]
+    [216, 2, 39, 17, -20, -8]
+    [257, 2, 31, 16, -14, -7]
+}
+alternative_sprites (ss_aircraft_112, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/12_4x.png", "gfx/12_4x_mask.png") {
+    [8, 8, 146, 73, -73, -42]
+    [162, 8, 132, 72, -73, -33]
+    [302, 8, 163, 76, -81, -36]
+    [473, 8, 132, 90, -73, -56]
+    [613, 8, 146, 105, -73, -60]
+    [767, 8, 132, 90, -59, -56]
+    [907, 8, 163, 76, -82, -36]
+    [1078, 8, 132, 72, -59, -33]
+}
+spriteset (ss_aircraft_112_ground, "gfx/12_ground_1x.png") {
+    [2, 2, 36, 17, -18, -10]
+    [40, 2, 31, 16, -17, -7]
+    [73, 2, 39, 17, -19, -8]
+    [114, 2, 31, 21, -17, -13]
+    [147, 2, 34, 24, -17, -14]
+    [183, 2, 31, 21, -14, -13]
+    [216, 2, 39, 17, -20, -8]
+    [257, 2, 31, 16, -14, -7]
+}
+alternative_sprites (ss_aircraft_112_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/12_ground_4x.png", "gfx/12_ground_4x_mask.png") {
+    [8, 8, 146, 73, -73, -42]
+    [162, 8, 132, 72, -73, -33]
+    [302, 8, 163, 76, -81, -36]
+    [473, 8, 132, 91, -73, -56]
+    [613, 8, 146, 105, -73, -60]
+    [767, 8, 132, 91, -59, -56]
+    [907, 8, 163, 76, -82, -36]
+    [1078, 8, 132, 72, -59, -33]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_112, flight_state) {
+    0x00..0x0E: ss_aircraft_112_ground;
+    0x14..0x16: ss_aircraft_112_ground;
+    ss_aircraft_112;
+}
+// BAC One-Eleven.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_112, cargo_type_in_veh) {
+    MAIL: return 50;
+    GOOD: return 50;
+    VALU: return 25;
+    GOLD: return 25;
+    DIAM: return 25;
+    return 100;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_112, cargo_type_in_veh) {
+    PASS: return 10;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_112, 112) {
+    property {
+        name: string(STR_NAME_112);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1965, 1, 22);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 22;
+        running_cost_factor: 166;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 464 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 100;
+        mail_capacity: 10;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_112;
+        mail_capacity: sw_mail_112;
+        purchase_passenger_capacity: 100;
+        purchase_mail_capacity: 10;
+        purchase: ss_aircraft_112;
+        default: sw_graphics_112;
+    }
+}
+
+spriteset (ss_aircraft_113, "gfx/13_1x.png") {
+    [2, 2, 34, 19, -17, -11]
+    [38, 2, 35, 16, -19, -8]
+    [75, 2, 44, 18, -22, -9]
+    [121, 2, 36, 24, -20, -15]
+    [159, 2, 34, 28, -17, -16]
+    [195, 2, 36, 24, -16, -15]
+    [233, 2, 44, 18, -22, -9]
+    [279, 2, 35, 16, -16, -8]
+}
+alternative_sprites (ss_aircraft_113, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/13_4x.png", "gfx/13_4x_mask.png") {
+    [8, 8, 144, 79, -72, -45]
+    [160, 8, 150, 72, -84, -35]
+    [318, 8, 182, 78, -91, -38]
+    [508, 8, 150, 103, -84, -64]
+    [666, 8, 144, 119, -72, -68]
+    [818, 8, 150, 103, -66, -64]
+    [976, 8, 182, 78, -91, -38]
+    [1166, 8, 150, 72, -66, -35]
+}
+spriteset (ss_aircraft_113_ground, "gfx/13_ground_1x.png") {
+    [2, 2, 34, 19, -17, -11]
+    [38, 2, 35, 16, -19, -8]
+    [75, 2, 44, 18, -22, -9]
+    [121, 2, 36, 25, -20, -15]
+    [159, 2, 34, 28, -17, -16]
+    [195, 2, 36, 25, -16, -15]
+    [233, 2, 44, 18, -22, -9]
+    [279, 2, 35, 16, -16, -8]
+}
+alternative_sprites (ss_aircraft_113_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/13_ground_4x.png", "gfx/13_ground_4x_mask.png") {
+    [8, 8, 144, 79, -72, -45]
+    [160, 8, 150, 72, -84, -35]
+    [318, 8, 182, 78, -91, -38]
+    [508, 8, 150, 106, -84, -64]
+    [666, 8, 144, 121, -72, -68]
+    [818, 8, 150, 106, -66, -64]
+    [976, 8, 182, 78, -91, -38]
+    [1166, 8, 150, 72, -66, -35]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_113, flight_state) {
+    0x00..0x0E: ss_aircraft_113_ground;
+    0x14..0x16: ss_aircraft_113_ground;
+    ss_aircraft_113;
+}
+// Douglas DC-9.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_113, cargo_type_in_veh) {
+    MAIL: return 55;
+    GOOD: return 55;
+    VALU: return 25;
+    GOLD: return 25;
+    DIAM: return 25;
+    return 105;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_113, cargo_type_in_veh) {
+    PASS: return 10;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_113, 113) {
+    property {
+        name: string(STR_NAME_113);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1965, 11, 23);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 20;
+        running_cost_factor: 155;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 512 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 105;
+        mail_capacity: 10;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_113;
+        mail_capacity: sw_mail_113;
+        purchase_passenger_capacity: 105;
+        purchase_mail_capacity: 10;
+        purchase: ss_aircraft_113;
+        default: sw_graphics_113;
+    }
+}
+
+spriteset (ss_aircraft_114, "gfx/14_1x.png") {
+    [2, 2, 5, 13, -2, -3]
+    [9, 2, 19, 10, -13, -2]
+    [30, 2, 27, 7, -20, -3]
+    [59, 2, 21, 14, -15, -9]
+    [82, 2, 6, 17, -3, -12]
+    [90, 2, 19, 15, -6, -10]
+    [111, 2, 27, 8, -7, -3]
+    [140, 2, 20, 9, -6, -2]
+}
+alternative_sprites (ss_aircraft_114, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/14_4x.png", "gfx/14_4x_mask.png") {
+    [8, 8, 32, 54, -16, -15]
+    [48, 8, 81, 44, -55, -12]
+    [137, 8, 113, 32, -80, -11]
+    [258, 8, 85, 61, -59, -39]
+    [351, 8, 32, 74, -16, -49]
+    [391, 8, 81, 63, -26, -41]
+    [480, 8, 112, 36, -33, -15]
+    [600, 8, 85, 42, -26, -12]
+}
+spriteset (ss_rotor_114, "gfx/14_rotor_1x.png") {
+    [2, 2, 15, 12, -8, -3]
+    [19, 2, 15, 12, -8, -3]
+    [36, 2, 6, 12, -1, -2]
+    [44, 2, 5, 12, -5, -2]
+}
+alternative_sprites (ss_rotor_114, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/14_rotor_4x.png", "gfx/14_rotor_4x_mask.png") {
+    [8, 8, 112, 57, -56, -16]
+    [128, 8, 112, 57, -56, -16]
+    [248, 8, 110, 60, -52, -14]
+    [366, 8, 110, 59, -59, -13]
+}
+spriteset (ss_aircraft_114_tail1, "gfx/14_tail1_1x.png") {
+    [2, 2, 5, 12, -2, -3]
+    [9, 2, 20, 9, -14, -2]
+    [31, 2, 27, 7, -20, -3]
+    [60, 2, 21, 14, -15, -9]
+    [83, 2, 6, 17, -3, -12]
+    [91, 2, 20, 15, -6, -10]
+    [113, 2, 27, 9, -7, -4]
+    [142, 2, 21, 8, -6, -2]
+}
+alternative_sprites (ss_aircraft_114_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/14_tail1_4x.png", "gfx/14_tail1_4x_mask.png") {
+    [8, 8, 32, 53, -16, -15]
+    [48, 8, 82, 42, -56, -12]
+    [138, 8, 114, 36, -81, -15]
+    [260, 8, 86, 60, -60, -38]
+    [354, 8, 32, 74, -16, -49]
+    [394, 8, 82, 63, -26, -41]
+    [484, 8, 114, 39, -33, -18]
+    [606, 8, 86, 42, -26, -12]
+}
+spriteset (ss_aircraft_114_tail2, "gfx/14_tail2_1x.png") {
+    [2, 2, 5, 13, -2, -3]
+    [9, 2, 19, 10, -13, -2]
+    [30, 2, 26, 7, -19, -3]
+    [58, 2, 20, 15, -14, -10]
+    [80, 2, 6, 18, -3, -13]
+    [88, 2, 19, 15, -6, -10]
+    [109, 2, 26, 9, -7, -4]
+    [137, 2, 20, 9, -6, -2]
+}
+alternative_sprites (ss_aircraft_114_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/14_tail2_4x.png", "gfx/14_tail2_4x_mask.png") {
+    [8, 8, 32, 55, -16, -15]
+    [48, 8, 79, 44, -53, -12]
+    [135, 8, 111, 36, -78, -15]
+    [254, 8, 84, 61, -58, -39]
+    [346, 8, 32, 75, -16, -50]
+    [386, 8, 79, 65, -26, -43]
+    [473, 8, 111, 39, -33, -18]
+    [592, 8, 84, 42, -26, -12]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_tail_114, var[0x46, 1, 0xFF] % 3) {
+    1: ss_aircraft_114_tail1;
+    2: ss_aircraft_114_tail2;
+    ss_aircraft_114;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_114, flight_state) {
+    0x00..0x0E: ss_aircraft_114;
+    sw_tail_114;
+}
+// Mil Mi-8.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_114, cargo_type_in_veh) {
+    MAIL: return 15;
+    GOOD: return 15;
+    VALU: return 10;
+    GOLD: return 10;
+    DIAM: return 10;
+    return 28;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_114, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_114, 114) {
+    property {
+        name: string(STR_NAME_114);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1967, 1, 1);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 5;
+        running_cost_factor: 78;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 136 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_HELICOPTER;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_HELICOPTER;
+        passenger_capacity: 28;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_114;
+        mail_capacity: sw_mail_114;
+        purchase_passenger_capacity: 28;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_114;
+        rotor: ss_rotor_114;
+        default: sw_graphics_114;
+    }
+}
+
+spriteset (ss_aircraft_115, "gfx/15_1x.png") {
+    [2, 2, 36, 17, -18, -9]
+    [40, 2, 30, 15, -17, -7]
+    [72, 2, 38, 18, -19, -10]
+    [112, 2, 30, 23, -17, -15]
+    [144, 2, 34, 22, -17, -12]
+    [180, 2, 30, 23, -13, -15]
+    [212, 2, 38, 18, -19, -10]
+    [252, 2, 30, 14, -13, -7]
+}
+alternative_sprites (ss_aircraft_115, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/15_4x.png", "gfx/15_4x_mask.png") {
+    [8, 8, 146, 76, -73, -41]
+    [162, 8, 131, 65, -74, -32]
+    [301, 8, 158, 77, -79, -41]
+    [467, 8, 131, 98, -74, -65]
+    [606, 8, 146, 117, -73, -74]
+    [760, 8, 131, 98, -57, -65]
+    [899, 8, 158, 77, -79, -41]
+    [1065, 8, 131, 65, -57, -32]
+}
+spriteset (ss_aircraft_115_ground, "gfx/15_ground_1x.png") {
+    [2, 2, 36, 17, -18, -9]
+    [40, 2, 30, 15, -17, -7]
+    [72, 2, 38, 18, -19, -10]
+    [112, 2, 30, 23, -17, -15]
+    [144, 2, 34, 22, -17, -12]
+    [180, 2, 30, 23, -13, -15]
+    [212, 2, 38, 18, -19, -10]
+    [252, 2, 30, 14, -13, -7]
+}
+alternative_sprites (ss_aircraft_115_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/15_ground_4x.png", "gfx/15_ground_4x_mask.png") {
+    [8, 8, 146, 76, -73, -41]
+    [162, 8, 131, 65, -74, -32]
+    [301, 8, 158, 77, -79, -41]
+    [467, 8, 131, 101, -74, -65]
+    [606, 8, 146, 117, -73, -74]
+    [760, 8, 131, 101, -57, -65]
+    [899, 8, 158, 77, -79, -41]
+    [1065, 8, 131, 65, -57, -32]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_115, flight_state) {
+    0x00..0x0E: ss_aircraft_115_ground;
+    0x14..0x16: ss_aircraft_115_ground;
+    ss_aircraft_115;
+}
+// Boeing 737.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_115, cargo_type_in_veh) {
+    MAIL: return 60;
+    GOOD: return 60;
+    VALU: return 30;
+    GOLD: return 30;
+    DIAM: return 30;
+    return 100;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_115, cargo_type_in_veh) {
+    PASS: return 10;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_115, 115) {
+    property {
+        name: string(STR_NAME_115);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1967, 12, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 19;
+        running_cost_factor: 148;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 464 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 100;
+        mail_capacity: 10;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_115;
+        mail_capacity: sw_mail_115;
+        purchase_passenger_capacity: 100;
+        purchase_mail_capacity: 10;
+        purchase: ss_aircraft_115;
+        default: sw_graphics_115;
+    }
+}
+
+spriteset (ss_aircraft_116, "gfx/16_1x.png") {
+    [2, 2, 66, 36, -33, -22]
+    [70, 2, 64, 31, -36, -17]
+    [136, 2, 78, 33, -39, -19]
+    [216, 2, 63, 42, -35, -29]
+    [281, 2, 66, 44, -33, -26]
+    [349, 2, 63, 41, -28, -28]
+    [414, 2, 78, 33, -39, -19]
+    [494, 2, 64, 31, -28, -17]
+}
+alternative_sprites (ss_aircraft_116, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/16_4x.png", "gfx/16_4x_mask.png") {
+    [8, 8, 268, 152, -134, -91]
+    [284, 8, 261, 134, -148, -72]
+    [553, 8, 316, 137, -158, -78]
+    [877, 8, 261, 171, -148, -118]
+    [1146, 8, 268, 213, -134, -139]
+    [1422, 8, 261, 171, -113, -118]
+    [1691, 8, 316, 137, -158, -78]
+    [2015, 8, 261, 134, -113, -72]
+}
+spriteset (ss_aircraft_116_ground, "gfx/16_ground_1x.png") {
+    [2, 2, 66, 36, -33, -22]
+    [70, 2, 64, 31, -36, -17]
+    [136, 2, 78, 33, -39, -19]
+    [216, 2, 63, 43, -35, -29]
+    [281, 2, 66, 44, -33, -26]
+    [349, 2, 63, 42, -28, -28]
+    [414, 2, 78, 33, -39, -19]
+    [494, 2, 64, 31, -28, -17]
+}
+alternative_sprites (ss_aircraft_116_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/16_ground_4x.png", "gfx/16_ground_4x_mask.png") {
+    [8, 8, 268, 152, -134, -91]
+    [284, 8, 261, 134, -148, -72]
+    [553, 8, 316, 137, -158, -78]
+    [877, 8, 261, 178, -148, -118]
+    [1146, 8, 268, 216, -134, -139]
+    [1422, 8, 261, 178, -113, -118]
+    [1691, 8, 316, 137, -158, -78]
+    [2015, 8, 261, 134, -113, -72]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_116, flight_state) {
+    0x00..0x0E: ss_aircraft_116_ground;
+    0x14..0x16: ss_aircraft_116_ground;
+    ss_aircraft_116;
+}
+// Boeing 747.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_116, cargo_type_in_veh) {
+    MAIL: return 265;
+    GOOD: return 265;
+    VALU: return 130;
+    GOLD: return 130;
+    DIAM: return 130;
+    return 365;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_116, cargo_type_in_veh) {
+    PASS: return 85;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_116, 116) {
+    property {
+        name: string(STR_NAME_116);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1969, 12, 30);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 57;
+        running_cost_factor: 255;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 544 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET_BIG;
+        passenger_capacity: 365;
+        mail_capacity: 85;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_116;
+        mail_capacity: sw_mail_116;
+        purchase_passenger_capacity: 365;
+        purchase_mail_capacity: 85;
+        running_cost_factor: 287;
+        purchase_running_cost_factor: 287;
+        purchase: ss_aircraft_116;
+        default: sw_graphics_116;
+    }
+}
+
+spriteset (ss_aircraft_117, "gfx/17_1x.png") {
+    [2, 2, 52, 28, -26, -15]
+    [56, 2, 50, 25, -29, -11]
+    [108, 2, 59, 26, -29, -13]
+    [169, 2, 49, 33, -28, -21]
+    [220, 2, 52, 35, -26, -19]
+    [274, 2, 49, 33, -21, -21]
+    [325, 2, 59, 26, -30, -13]
+    [386, 2, 49, 25, -21, -11]
+}
+alternative_sprites (ss_aircraft_117, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/17_4x.png", "gfx/17_4x_mask.png") {
+    [8, 8, 212, 117, -106, -63]
+    [228, 8, 207, 107, -119, -48]
+    [443, 8, 244, 110, -122, -55]
+    [695, 8, 206, 139, -118, -89]
+    [909, 8, 212, 170, -106, -104]
+    [1129, 8, 207, 139, -88, -89]
+    [1344, 8, 244, 110, -122, -55]
+    [1596, 8, 206, 107, -88, -48]
+}
+spriteset (ss_aircraft_117_ground, "gfx/17_ground_1x.png") {
+    [2, 2, 52, 28, -26, -15]
+    [56, 2, 50, 25, -29, -11]
+    [108, 2, 59, 26, -29, -13]
+    [169, 2, 49, 33, -28, -21]
+    [220, 2, 52, 35, -26, -19]
+    [274, 2, 49, 33, -21, -21]
+    [325, 2, 59, 26, -30, -13]
+    [386, 2, 49, 25, -21, -11]
+}
+alternative_sprites (ss_aircraft_117_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/17_ground_4x.png", "gfx/17_ground_4x_mask.png") {
+    [8, 8, 212, 117, -106, -63]
+    [228, 8, 207, 107, -119, -48]
+    [443, 8, 244, 110, -122, -55]
+    [695, 8, 206, 142, -118, -89]
+    [909, 8, 212, 170, -106, -104]
+    [1129, 8, 207, 142, -88, -89]
+    [1344, 8, 244, 110, -122, -55]
+    [1596, 8, 206, 107, -88, -48]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_117, flight_state) {
+    0x00..0x0E: ss_aircraft_117_ground;
+    0x14..0x16: ss_aircraft_117_ground;
+    ss_aircraft_117;
+}
+// McDonnell Douglas DC-10.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_117, cargo_type_in_veh) {
+    MAIL: return 170;
+    GOOD: return 170;
+    VALU: return 85;
+    GOLD: return 85;
+    DIAM: return 85;
+    return 270;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_117, cargo_type_in_veh) {
+    PASS: return 40;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_117, 117) {
+    property {
+        name: string(STR_NAME_117);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1971, 7, 5);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 42;
+        running_cost_factor: 222;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 544 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET_BIG;
+        passenger_capacity: 270;
+        mail_capacity: 40;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_117;
+        mail_capacity: sw_mail_117;
+        purchase_passenger_capacity: 270;
+        purchase_mail_capacity: 40;
+        purchase: ss_aircraft_117;
+        default: sw_graphics_117;
+    }
+}
+
+spriteset (ss_aircraft_118, "gfx/18_1x.png") {
+    [2, 2, 56, 30, -28, -18]
+    [60, 2, 52, 26, -30, -14]
+    [114, 2, 62, 28, -31, -17]
+    [178, 2, 52, 35, -30, -25]
+    [232, 2, 56, 37, -28, -23]
+    [290, 2, 52, 35, -22, -25]
+    [344, 2, 62, 28, -31, -17]
+    [408, 2, 52, 26, -22, -14]
+}
+alternative_sprites (ss_aircraft_118, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/18_4x.png", "gfx/18_4x_mask.png") {
+    [8, 8, 226, 127, -113, -76]
+    [242, 8, 219, 113, -127, -60]
+    [469, 8, 254, 116, -127, -70]
+    [731, 8, 219, 146, -127, -104]
+    [958, 8, 226, 181, -113, -122]
+    [1192, 8, 219, 146, -92, -104]
+    [1419, 8, 254, 116, -127, -70]
+    [1681, 8, 219, 113, -92, -60]
+}
+spriteset (ss_aircraft_118_ground, "gfx/18_ground_1x.png") {
+    [2, 2, 56, 30, -28, -18]
+    [60, 2, 52, 26, -30, -14]
+    [114, 2, 62, 28, -31, -17]
+    [178, 2, 52, 35, -30, -25]
+    [232, 2, 56, 37, -28, -23]
+    [290, 2, 52, 35, -22, -25]
+    [344, 2, 62, 28, -31, -17]
+    [408, 2, 52, 26, -22, -14]
+}
+alternative_sprites (ss_aircraft_118_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/18_ground_4x.png", "gfx/18_ground_4x_mask.png") {
+    [8, 8, 226, 127, -113, -76]
+    [242, 8, 219, 113, -127, -60]
+    [469, 8, 254, 116, -127, -70]
+    [731, 8, 219, 147, -127, -104]
+    [958, 8, 226, 181, -113, -122]
+    [1192, 8, 219, 147, -92, -104]
+    [1419, 8, 254, 116, -127, -70]
+    [1681, 8, 219, 113, -92, -60]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_118, flight_state) {
+    0x00..0x0E: ss_aircraft_118_ground;
+    0x14..0x16: ss_aircraft_118_ground;
+    ss_aircraft_118;
+}
+// Lockheed L-1011 TriStar.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_118, cargo_type_in_veh) {
+    MAIL: return 175;
+    GOOD: return 175;
+    VALU: return 90;
+    GOLD: return 90;
+    DIAM: return 90;
+    return 245;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_118, cargo_type_in_veh) {
+    PASS: return 55;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_118, 118) {
+    property {
+        name: string(STR_NAME_118);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1972, 2, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 41;
+        running_cost_factor: 234;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 560 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET_BIG;
+        passenger_capacity: 245;
+        mail_capacity: 55;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_118;
+        mail_capacity: sw_mail_118;
+        purchase_passenger_capacity: 245;
+        purchase_mail_capacity: 55;
+        purchase: ss_aircraft_118;
+        default: sw_graphics_118;
+    }
+}
+
+spriteset (ss_aircraft_119, "gfx/19_1x.png") {
+    [2, 2, 42, 24, -21, -14]
+    [46, 2, 43, 23, -24, -10]
+    [91, 2, 54, 23, -27, -11]
+    [147, 2, 43, 29, -24, -19]
+    [192, 2, 42, 34, -21, -20]
+    [236, 2, 43, 29, -19, -19]
+    [281, 2, 54, 23, -27, -11]
+    [337, 2, 43, 23, -19, -10]
+}
+alternative_sprites (ss_aircraft_119, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/19_4x.png", "gfx/19_4x_mask.png") {
+    [8, 8, 176, 100, -88, -57]
+    [192, 8, 181, 97, -101, -43]
+    [381, 8, 224, 97, -112, -46]
+    [613, 8, 181, 123, -101, -80]
+    [802, 8, 176, 144, -88, -85]
+    [986, 8, 181, 123, -80, -80]
+    [1175, 8, 224, 97, -112, -46]
+    [1407, 8, 181, 97, -80, -43]
+}
+spriteset (ss_aircraft_119_ground, "gfx/19_ground_1x.png") {
+    [2, 2, 42, 24, -21, -14]
+    [46, 2, 43, 23, -24, -10]
+    [91, 2, 54, 23, -27, -11]
+    [147, 2, 43, 29, -24, -19]
+    [192, 2, 42, 34, -21, -20]
+    [236, 2, 43, 29, -19, -19]
+    [281, 2, 54, 23, -27, -11]
+    [337, 2, 43, 23, -19, -10]
+}
+alternative_sprites (ss_aircraft_119_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/19_ground_4x.png", "gfx/19_ground_4x_mask.png") {
+    [8, 8, 176, 100, -88, -57]
+    [192, 8, 181, 97, -101, -43]
+    [381, 8, 224, 97, -112, -46]
+    [613, 8, 181, 125, -101, -80]
+    [802, 8, 176, 144, -88, -85]
+    [986, 8, 181, 125, -80, -80]
+    [1175, 8, 224, 97, -112, -46]
+    [1407, 8, 181, 97, -80, -43]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_119, flight_state) {
+    0x00..0x0E: ss_aircraft_119_ground;
+    0x14..0x16: ss_aircraft_119_ground;
+    ss_aircraft_119;
+}
+// Tupolev Tu-154.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_119, cargo_type_in_veh) {
+    MAIL: return 70;
+    GOOD: return 70;
+    VALU: return 35;
+    GOLD: return 35;
+    DIAM: return 35;
+    return 165;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_119, cargo_type_in_veh) {
+    PASS: return 20;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_119, 119) {
+    property {
+        name: string(STR_NAME_119);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1972, 2, 1);
+        model_life: 30;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 14;
+        running_cost_factor: 228;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 560 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 165;
+        mail_capacity: 20;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_119;
+        mail_capacity: sw_mail_119;
+        purchase_passenger_capacity: 165;
+        purchase_mail_capacity: 20;
+        purchase: ss_aircraft_119;
+        default: sw_graphics_119;
+    }
+}
+
+spriteset (ss_aircraft_120, "gfx/20_1x.png") {
+    [2, 2, 52, 29, -26, -16]
+    [56, 2, 50, 23, -28, -12]
+    [108, 2, 62, 27, -31, -14]
+    [172, 2, 50, 34, -28, -22]
+    [224, 2, 52, 34, -26, -18]
+    [278, 2, 50, 34, -22, -22]
+    [330, 2, 62, 27, -31, -14]
+    [394, 2, 50, 23, -22, -12]
+}
+alternative_sprites (ss_aircraft_120, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/20_4x.png", "gfx/20_4x_mask.png") {
+    [8, 8, 212, 120, -106, -66]
+    [228, 8, 208, 99, -117, -50]
+    [444, 8, 252, 114, -126, -60]
+    [704, 8, 208, 142, -117, -92]
+    [920, 8, 212, 175, -106, -108]
+    [1140, 8, 208, 142, -91, -92]
+    [1356, 8, 252, 114, -126, -60]
+    [1616, 8, 208, 99, -91, -50]
+}
+spriteset (ss_aircraft_120_ground, "gfx/20_ground_1x.png") {
+    [2, 2, 52, 29, -26, -16]
+    [56, 2, 50, 23, -28, -12]
+    [108, 2, 62, 27, -31, -14]
+    [172, 2, 50, 35, -28, -22]
+    [224, 2, 52, 34, -26, -18]
+    [278, 2, 50, 35, -22, -22]
+    [330, 2, 62, 27, -31, -14]
+    [394, 2, 50, 23, -22, -12]
+}
+alternative_sprites (ss_aircraft_120_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/20_ground_4x.png", "gfx/20_ground_4x_mask.png") {
+    [8, 8, 212, 120, -106, -66]
+    [228, 8, 208, 99, -117, -50]
+    [444, 8, 252, 114, -126, -60]
+    [704, 8, 208, 149, -117, -92]
+    [920, 8, 212, 178, -106, -108]
+    [1140, 8, 208, 149, -91, -92]
+    [1356, 8, 252, 114, -126, -60]
+    [1616, 8, 208, 99, -91, -50]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_120, flight_state) {
+    0x00..0x0E: ss_aircraft_120_ground;
+    0x14..0x16: ss_aircraft_120_ground;
+    ss_aircraft_120;
+}
+// Airbus A300.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_120, cargo_type_in_veh) {
+    MAIL: return 140;
+    GOOD: return 140;
+    VALU: return 70;
+    GOLD: return 70;
+    DIAM: return 70;
+    return 250;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_120, cargo_type_in_veh) {
+    PASS: return 70;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_120, 120) {
+    property {
+        name: string(STR_NAME_120);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1974, 5, 10);
+        model_life: 31;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 40;
+        running_cost_factor: 192;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 528 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET_BIG;
+        passenger_capacity: 250;
+        mail_capacity: 70;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_120;
+        mail_capacity: sw_mail_120;
+        purchase_passenger_capacity: 250;
+        purchase_mail_capacity: 70;
+        purchase: ss_aircraft_120;
+        default: sw_graphics_120;
+    }
+}
+
+spriteset (ss_aircraft_121, "gfx/21_1x.png") {
+    [2, 2, 28, 30, -14, -15]
+    [32, 2, 46, 24, -23, -11]
+    [80, 2, 65, 16, -32, -7]
+    [147, 2, 46, 28, -23, -16]
+    [195, 2, 28, 34, -14, -17]
+    [225, 2, 46, 28, -23, -16]
+    [273, 2, 65, 16, -33, -7]
+    [340, 2, 46, 24, -23, -11]
+}
+alternative_sprites (ss_aircraft_121, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/21_4x.png", "gfx/21_4x_mask.png") {
+    [8, 8, 120, 132, -60, -66]
+    [136, 8, 200, 102, -100, -48]
+    [344, 8, 278, 69, -139, -31]
+    [630, 8, 200, 123, -100, -69]
+    [838, 8, 120, 158, -60, -84]
+    [966, 8, 200, 123, -100, -69]
+    [1174, 8, 278, 69, -139, -31]
+    [1460, 8, 200, 102, -100, -48]
+}
+spriteset (ss_aircraft_121_ground, "gfx/21_ground_1x.png") {
+    [2, 2, 28, 30, -14, -15]
+    [32, 2, 46, 24, -23, -11]
+    [80, 2, 65, 16, -32, -7]
+    [147, 2, 46, 28, -23, -16]
+    [195, 2, 28, 34, -14, -17]
+    [225, 2, 46, 28, -23, -16]
+    [273, 2, 65, 16, -33, -7]
+    [340, 2, 46, 24, -23, -11]
+}
+alternative_sprites (ss_aircraft_121_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/21_ground_4x.png", "gfx/21_ground_4x_mask.png") {
+    [8, 8, 120, 132, -60, -66]
+    [136, 8, 200, 102, -100, -48]
+    [344, 8, 278, 69, -139, -31]
+    [630, 8, 200, 123, -100, -69]
+    [838, 8, 120, 158, -60, -84]
+    [966, 8, 200, 123, -100, -69]
+    [1174, 8, 278, 69, -139, -31]
+    [1460, 8, 200, 102, -100, -48]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_121, flight_state) {
+    0x00..0x0E: ss_aircraft_121_ground;
+    0x14..0x16: ss_aircraft_121_ground;
+    ss_aircraft_121;
+}
+// Aérospatiale/BAC Concorde.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_121, cargo_type_in_veh) {
+    MAIL: return 55;
+    GOOD: return 55;
+    VALU: return 25;
+    GOLD: return 25;
+    DIAM: return 25;
+    return 120;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_121, cargo_type_in_veh) {
+    PASS: return 10;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_121, 121) {
+    property {
+        name: string(STR_NAME_121);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1976, 6, 21);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 25;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 85;
+        running_cost_factor: 255;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 1320 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 50;
+        sound_effect: SOUND_TAKEOFF_JET_FAST;
+        passenger_capacity: 120;
+        mail_capacity: 10;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_121;
+        mail_capacity: sw_mail_121;
+        purchase_passenger_capacity: 120;
+        purchase_mail_capacity: 10;
+        running_cost_factor: 327;
+        purchase_running_cost_factor: 327;
+        purchase: ss_aircraft_121;
+        default: sw_graphics_121;
+    }
+}
+
+spriteset (ss_aircraft_122, "gfx/22_1x.png") {
+    [2, 2, 36, 23, -18, -13]
+    [40, 2, 42, 20, -23, -10]
+    [84, 2, 54, 19, -27, -9]
+    [140, 2, 42, 28, -23, -17]
+    [184, 2, 36, 34, -18, -19]
+    [222, 2, 42, 28, -19, -17]
+    [266, 2, 54, 19, -27, -9]
+    [322, 2, 42, 20, -19, -10]
+}
+alternative_sprites (ss_aircraft_122, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/22_4x.png", "gfx/22_4x_mask.png") {
+    [8, 8, 158, 97, -79, -54]
+    [174, 8, 178, 83, -98, -41]
+    [360, 8, 220, 81, -110, -39]
+    [588, 8, 178, 119, -98, -72]
+    [774, 8, 158, 140, -79, -78]
+    [940, 8, 178, 119, -80, -72]
+    [1126, 8, 220, 81, -110, -39]
+    [1354, 8, 178, 83, -80, -41]
+}
+spriteset (ss_aircraft_122_ground, "gfx/22_ground_1x.png") {
+    [2, 2, 36, 23, -18, -13]
+    [40, 2, 42, 20, -23, -10]
+    [84, 2, 54, 19, -27, -9]
+    [140, 2, 42, 28, -23, -17]
+    [184, 2, 36, 34, -18, -19]
+    [222, 2, 42, 28, -19, -17]
+    [266, 2, 54, 19, -27, -9]
+    [322, 2, 42, 20, -19, -10]
+}
+alternative_sprites (ss_aircraft_122_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/22_ground_4x.png", "gfx/22_ground_4x_mask.png") {
+    [8, 8, 158, 97, -79, -54]
+    [174, 8, 178, 83, -98, -41]
+    [360, 8, 220, 81, -110, -39]
+    [588, 8, 178, 122, -98, -72]
+    [774, 8, 158, 142, -79, -78]
+    [940, 8, 178, 122, -80, -72]
+    [1126, 8, 220, 81, -110, -39]
+    [1354, 8, 178, 83, -80, -41]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_122, flight_state) {
+    0x00..0x0E: ss_aircraft_122_ground;
+    0x14..0x16: ss_aircraft_122_ground;
+    ss_aircraft_122;
+}
+// McDonnell Douglas MD-80.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_122, cargo_type_in_veh) {
+    MAIL: return 80;
+    GOOD: return 80;
+    VALU: return 40;
+    GOLD: return 40;
+    DIAM: return 40;
+    return 155;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_122, cargo_type_in_veh) {
+    PASS: return 15;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_122, 122) {
+    property {
+        name: string(STR_NAME_122);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1980, 9, 13);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 28;
+        running_cost_factor: 151;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 512 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 155;
+        mail_capacity: 15;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_122;
+        mail_capacity: sw_mail_122;
+        purchase_passenger_capacity: 155;
+        purchase_mail_capacity: 15;
+        purchase: ss_aircraft_122;
+        default: sw_graphics_122;
+    }
+}
+
+spriteset (ss_aircraft_123, "gfx/23_1x.png") {
+    [2, 2, 6, 11, -3, -5]
+    [10, 2, 19, 10, -14, -5]
+    [31, 2, 27, 7, -19, -6]
+    [60, 2, 20, 15, -14, -12]
+    [82, 2, 6, 18, -3, -14]
+    [90, 2, 20, 15, -6, -12]
+    [112, 2, 27, 9, -8, -7]
+    [141, 2, 20, 10, -6, -5]
+}
+alternative_sprites (ss_aircraft_123, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/23_4x.png", "gfx/23_4x_mask.png") {
+    [8, 8, 31, 55, -17, -24]
+    [47, 8, 84, 45, -59, -22]
+    [139, 8, 111, 33, -77, -24]
+    [258, 8, 83, 62, -57, -47]
+    [349, 8, 31, 75, -14, -58]
+    [388, 8, 84, 64, -25, -50]
+    [480, 8, 111, 36, -34, -27]
+    [599, 8, 83, 45, -26, -22]
+}
+spriteset (ss_rotor_123, "gfx/23_rotor_1x.png") {
+    [2, 2, 5, 9, -1, -3]
+    [9, 2, 5, 9, -1, -3]
+    [16, 2, 7, 10, -6, -4]
+    [25, 2, 10, 8, -6, -3]
+}
+alternative_sprites (ss_rotor_123, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/23_rotor_4x.png", "gfx/23_rotor_4x_mask.png") {
+    [8, 8, 102, 45, -47, -19]
+    [118, 8, 102, 45, -47, -19]
+    [228, 8, 106, 46, -55, -19]
+    [342, 8, 107, 48, -55, -22]
+}
+spriteset (ss_aircraft_123_tail1, "gfx/23_tail1_1x.png") {
+    [2, 2, 6, 12, -3, -5]
+    [10, 2, 19, 9, -14, -5]
+    [31, 2, 27, 6, -19, -5]
+    [60, 2, 20, 15, -14, -12]
+    [82, 2, 6, 18, -3, -14]
+    [90, 2, 20, 15, -6, -12]
+    [112, 2, 27, 8, -8, -6]
+    [141, 2, 20, 10, -6, -5]
+}
+alternative_sprites (ss_aircraft_123_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/23_tail1_4x.png", "gfx/23_tail1_4x_mask.png") {
+    [8, 8, 31, 55, -17, -24]
+    [47, 8, 84, 45, -59, -22]
+    [139, 8, 109, 32, -75, -23]
+    [256, 8, 82, 63, -56, -48]
+    [346, 8, 31, 76, -14, -59]
+    [385, 8, 84, 64, -25, -50]
+    [477, 8, 109, 35, -34, -26]
+    [594, 8, 82, 45, -26, -22]
+}
+spriteset (ss_aircraft_123_tail2, "gfx/23_tail2_1x.png") {
+    [2, 2, 6, 12, -3, -5]
+    [10, 2, 19, 10, -14, -5]
+    [31, 2, 27, 6, -19, -5]
+    [60, 2, 20, 14, -14, -11]
+    [82, 2, 6, 18, -3, -14]
+    [90, 2, 20, 15, -6, -12]
+    [112, 2, 27, 8, -8, -6]
+    [141, 2, 20, 10, -6, -5]
+}
+alternative_sprites (ss_aircraft_123_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/23_tail2_4x.png", "gfx/23_tail2_4x_mask.png") {
+    [8, 8, 31, 55, -17, -24]
+    [47, 8, 84, 45, -59, -22]
+    [139, 8, 110, 32, -76, -23]
+    [257, 8, 83, 61, -57, -46]
+    [348, 8, 31, 73, -14, -56]
+    [387, 8, 84, 62, -25, -48]
+    [479, 8, 110, 35, -34, -26]
+    [597, 8, 83, 45, -26, -22]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_tail_123, var[0x46, 1, 0xFF] % 3) {
+    1: ss_aircraft_123_tail1;
+    2: ss_aircraft_123_tail2;
+    ss_aircraft_123;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_123, flight_state) {
+    0x00..0x0E: ss_aircraft_123;
+    sw_tail_123;
+}
+// Aérospatiale AS332 Super Puma.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_123, cargo_type_in_veh) {
+    MAIL: return 10;
+    GOOD: return 10;
+    VALU: return 5;
+    GOLD: return 5;
+    DIAM: return 5;
+    return 25;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_123, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_123, 123) {
+    property {
+        name: string(STR_NAME_123);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1981, 6, 1);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 11;
+        running_cost_factor: 72;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 160 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_HELICOPTER;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_HELICOPTER;
+        passenger_capacity: 25;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_123;
+        mail_capacity: sw_mail_123;
+        purchase_passenger_capacity: 25;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_123;
+        rotor: ss_rotor_123;
+        default: sw_graphics_123;
+    }
+}
+
+spriteset (ss_aircraft_124, "gfx/24_1x.png") {
+    [2, 2, 54, 31, -27, -16]
+    [58, 2, 52, 25, -29, -12]
+    [112, 2, 64, 28, -32, -15]
+    [178, 2, 52, 34, -29, -22]
+    [232, 2, 54, 34, -27, -17]
+    [288, 2, 52, 34, -23, -22]
+    [342, 2, 64, 28, -32, -15]
+    [408, 2, 52, 25, -23, -12]
+}
+alternative_sprites (ss_aircraft_124, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/24_4x.png", "gfx/24_4x_mask.png") {
+    [8, 8, 222, 131, -111, -69]
+    [238, 8, 213, 106, -119, -52]
+    [459, 8, 262, 114, -131, -61]
+    [729, 8, 213, 145, -119, -93]
+    [950, 8, 222, 179, -111, -109]
+    [1180, 8, 213, 145, -94, -93]
+    [1401, 8, 262, 114, -131, -61]
+    [1671, 8, 213, 106, -94, -52]
+}
+spriteset (ss_aircraft_124_ground, "gfx/24_ground_1x.png") {
+    [2, 2, 54, 31, -27, -16]
+    [58, 2, 52, 25, -29, -12]
+    [112, 2, 64, 28, -32, -15]
+    [178, 2, 52, 36, -29, -22]
+    [232, 2, 54, 34, -27, -17]
+    [288, 2, 52, 36, -23, -22]
+    [342, 2, 64, 28, -32, -15]
+    [408, 2, 52, 25, -23, -12]
+}
+alternative_sprites (ss_aircraft_124_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/24_ground_4x.png", "gfx/24_ground_4x_mask.png") {
+    [8, 8, 222, 131, -111, -69]
+    [238, 8, 213, 106, -119, -52]
+    [459, 8, 262, 114, -131, -61]
+    [729, 8, 213, 153, -119, -93]
+    [950, 8, 222, 184, -111, -109]
+    [1180, 8, 213, 153, -94, -93]
+    [1401, 8, 262, 114, -131, -61]
+    [1671, 8, 213, 106, -94, -52]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_124, flight_state) {
+    0x00..0x0E: ss_aircraft_124_ground;
+    0x14..0x16: ss_aircraft_124_ground;
+    ss_aircraft_124;
+}
+// Boeing 767.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_124, cargo_type_in_veh) {
+    MAIL: return 150;
+    GOOD: return 150;
+    VALU: return 75;
+    GOLD: return 75;
+    DIAM: return 75;
+    return 260;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_124, cargo_type_in_veh) {
+    PASS: return 55;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_124, 124) {
+    property {
+        name: string(STR_NAME_124);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1982, 8, 19);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 46;
+        running_cost_factor: 188;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 528 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET_BIG;
+        passenger_capacity: 260;
+        mail_capacity: 55;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_124;
+        mail_capacity: sw_mail_124;
+        purchase_passenger_capacity: 260;
+        purchase_mail_capacity: 55;
+        purchase: ss_aircraft_124;
+        default: sw_graphics_124;
+    }
+}
+
+spriteset (ss_aircraft_125, "gfx/25_1x.png") {
+    [2, 2, 44, 27, -22, -14]
+    [48, 2, 44, 20, -24, -10]
+    [94, 2, 54, 22, -27, -12]
+    [150, 2, 44, 30, -24, -19]
+    [196, 2, 44, 30, -22, -15]
+    [242, 2, 44, 30, -20, -19]
+    [288, 2, 54, 22, -27, -12]
+    [344, 2, 44, 20, -20, -10]
+}
+alternative_sprites (ss_aircraft_125, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/25_4x.png", "gfx/25_4x_mask.png") {
+    [8, 8, 184, 112, -92, -58]
+    [200, 8, 183, 88, -102, -44]
+    [391, 8, 226, 95, -113, -51]
+    [625, 8, 183, 126, -102, -79]
+    [816, 8, 184, 155, -92, -93]
+    [1008, 8, 183, 126, -81, -79]
+    [1199, 8, 226, 95, -113, -51]
+    [1433, 8, 183, 88, -81, -44]
+}
+spriteset (ss_aircraft_125_ground, "gfx/25_ground_1x.png") {
+    [2, 2, 44, 27, -22, -14]
+    [48, 2, 44, 20, -24, -10]
+    [94, 2, 54, 22, -27, -12]
+    [150, 2, 44, 31, -24, -19]
+    [196, 2, 44, 30, -22, -15]
+    [242, 2, 44, 31, -20, -19]
+    [288, 2, 54, 22, -27, -12]
+    [344, 2, 44, 20, -20, -10]
+}
+alternative_sprites (ss_aircraft_125_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/25_ground_4x.png", "gfx/25_ground_4x_mask.png") {
+    [8, 8, 184, 112, -92, -58]
+    [200, 8, 183, 88, -102, -44]
+    [391, 8, 226, 95, -113, -51]
+    [625, 8, 183, 129, -102, -79]
+    [816, 8, 184, 155, -92, -93]
+    [1008, 8, 183, 129, -81, -79]
+    [1199, 8, 226, 95, -113, -51]
+    [1433, 8, 183, 88, -81, -44]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_125, flight_state) {
+    0x00..0x0E: ss_aircraft_125_ground;
+    0x14..0x16: ss_aircraft_125_ground;
+    ss_aircraft_125;
+}
+// Boeing 757.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_125, cargo_type_in_veh) {
+    MAIL: return 90;
+    GOOD: return 90;
+    VALU: return 45;
+    GOLD: return 45;
+    DIAM: return 45;
+    return 185;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_125, cargo_type_in_veh) {
+    PASS: return 25;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_125, 125) {
+    property {
+        name: string(STR_NAME_125);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1982, 12, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 34;
+        running_cost_factor: 163;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 528 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 185;
+        mail_capacity: 25;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_125;
+        mail_capacity: sw_mail_125;
+        purchase_passenger_capacity: 185;
+        purchase_mail_capacity: 25;
+        purchase: ss_aircraft_125;
+        default: sw_graphics_125;
+    }
+}
+
+spriteset (ss_aircraft_126, "gfx/26_1x.png") {
+    [2, 2, 30, 14, -15, -8]
+    [34, 2, 27, 11, -15, -6]
+    [63, 2, 32, 15, -16, -8]
+    [97, 2, 27, 20, -15, -13]
+    [126, 2, 28, 23, -14, -14]
+    [156, 2, 27, 20, -12, -13]
+    [185, 2, 32, 15, -16, -8]
+    [219, 2, 27, 11, -12, -6]
+}
+alternative_sprites (ss_aircraft_126, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/26_4x.png", "gfx/26_4x_mask.png") {
+    [8, 8, 124, 63, -62, -34]
+    [140, 8, 114, 50, -64, -28]
+    [262, 8, 138, 65, -69, -36]
+    [408, 8, 114, 86, -64, -56]
+    [530, 8, 124, 98, -62, -59]
+    [662, 8, 114, 86, -50, -56]
+    [784, 8, 138, 65, -69, -36]
+    [930, 8, 114, 50, -50, -28]
+}
+spriteset (ss_aircraft_126_ground, "gfx/26_ground_1x.png") {
+    [2, 2, 30, 14, -15, -8]
+    [34, 2, 27, 11, -15, -6]
+    [63, 2, 32, 15, -16, -8]
+    [97, 2, 27, 20, -15, -13]
+    [126, 2, 28, 23, -14, -14]
+    [156, 2, 27, 20, -12, -13]
+    [185, 2, 32, 15, -16, -8]
+    [219, 2, 27, 11, -12, -6]
+}
+alternative_sprites (ss_aircraft_126_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/26_ground_4x.png", "gfx/26_ground_4x_mask.png") {
+    [8, 8, 124, 63, -62, -34]
+    [140, 8, 114, 50, -64, -28]
+    [262, 8, 138, 65, -69, -36]
+    [408, 8, 114, 88, -64, -56]
+    [530, 8, 124, 99, -62, -59]
+    [662, 8, 114, 88, -50, -56]
+    [784, 8, 138, 65, -69, -36]
+    [930, 8, 114, 50, -50, -28]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_126, flight_state) {
+    0x00..0x0E: ss_aircraft_126_ground;
+    0x14..0x16: ss_aircraft_126_ground;
+    ss_aircraft_126;
+}
+// British Aerospace BAe 146.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_126, cargo_type_in_veh) {
+    MAIL: return 40;
+    GOOD: return 40;
+    VALU: return 20;
+    GOLD: return 20;
+    DIAM: return 20;
+    return 85;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_126, cargo_type_in_veh) {
+    PASS: return 10;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_126, 126) {
+    property {
+        name: string(STR_NAME_126);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1983, 2, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 27;
+        running_cost_factor: 143;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 464 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_SMALL;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 85;
+        mail_capacity: 10;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_126;
+        mail_capacity: sw_mail_126;
+        purchase_passenger_capacity: 85;
+        purchase_mail_capacity: 10;
+        purchase: ss_aircraft_126;
+        default: sw_graphics_126;
+    }
+}
+
+spriteset (ss_aircraft_127, "gfx/27_1x.png") {
+    [2, 2, 32, 13, -16, -7]
+    [36, 2, 28, 14, -15, -9]
+    [66, 2, 32, 16, -16, -10]
+    [100, 2, 28, 20, -15, -13]
+    [130, 2, 32, 23, -16, -14]
+    [164, 2, 28, 20, -13, -13]
+    [194, 2, 32, 16, -16, -10]
+    [228, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_127, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/27_4x.png", "gfx/27_4x_mask.png") {
+    [8, 8, 138, 62, -69, -33]
+    [154, 8, 119, 58, -63, -37]
+    [281, 8, 134, 73, -67, -44]
+    [423, 8, 119, 85, -63, -55]
+    [550, 8, 138, 96, -69, -57]
+    [696, 8, 119, 85, -56, -55]
+    [823, 8, 134, 73, -67, -44]
+    [965, 8, 119, 58, -56, -37]
+}
+spriteset (ss_aircraft_127_tail1, "gfx/27_tail1_1x.png") {
+    [2, 2, 32, 13, -16, -7]
+    [36, 2, 28, 14, -15, -9]
+    [66, 2, 32, 16, -16, -10]
+    [100, 2, 28, 20, -15, -13]
+    [130, 2, 32, 23, -16, -14]
+    [164, 2, 28, 20, -13, -13]
+    [194, 2, 32, 16, -16, -10]
+    [228, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_127_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/27_tail1_4x.png", "gfx/27_tail1_4x_mask.png") {
+    [8, 8, 138, 62, -69, -33]
+    [154, 8, 119, 58, -63, -37]
+    [281, 8, 134, 73, -67, -44]
+    [423, 8, 119, 85, -63, -55]
+    [550, 8, 138, 96, -69, -57]
+    [696, 8, 119, 85, -56, -55]
+    [823, 8, 134, 73, -67, -44]
+    [965, 8, 119, 58, -56, -37]
+}
+spriteset (ss_aircraft_127_tail2, "gfx/27_tail2_1x.png") {
+    [2, 2, 32, 13, -16, -7]
+    [36, 2, 28, 14, -15, -9]
+    [66, 2, 32, 16, -16, -10]
+    [100, 2, 28, 20, -15, -13]
+    [130, 2, 32, 23, -16, -14]
+    [164, 2, 28, 20, -13, -13]
+    [194, 2, 32, 16, -16, -10]
+    [228, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_127_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/27_tail2_4x.png", "gfx/27_tail2_4x_mask.png") {
+    [8, 8, 138, 62, -69, -33]
+    [154, 8, 119, 58, -63, -37]
+    [281, 8, 134, 73, -67, -44]
+    [423, 8, 119, 85, -63, -55]
+    [550, 8, 138, 96, -69, -57]
+    [696, 8, 119, 85, -56, -55]
+    [823, 8, 134, 73, -67, -44]
+    [965, 8, 119, 58, -56, -37]
+}
+spriteset (ss_aircraft_127_tail3, "gfx/27_tail3_1x.png") {
+    [2, 2, 32, 13, -16, -7]
+    [36, 2, 28, 14, -15, -9]
+    [66, 2, 32, 16, -16, -10]
+    [100, 2, 28, 20, -15, -13]
+    [130, 2, 32, 23, -16, -14]
+    [164, 2, 28, 20, -13, -13]
+    [194, 2, 32, 16, -16, -10]
+    [228, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_127_tail3, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/27_tail3_4x.png", "gfx/27_tail3_4x_mask.png") {
+    [8, 8, 138, 62, -69, -33]
+    [154, 8, 119, 58, -63, -37]
+    [281, 8, 134, 73, -67, -44]
+    [423, 8, 119, 85, -63, -55]
+    [550, 8, 138, 96, -69, -57]
+    [696, 8, 119, 85, -56, -55]
+    [823, 8, 134, 73, -67, -44]
+    [965, 8, 119, 58, -56, -37]
+}
+spriteset (ss_aircraft_127_tail4, "gfx/27_tail4_1x.png") {
+    [2, 2, 32, 13, -16, -7]
+    [36, 2, 28, 14, -15, -9]
+    [66, 2, 32, 16, -16, -10]
+    [100, 2, 28, 20, -15, -13]
+    [130, 2, 32, 23, -16, -14]
+    [164, 2, 28, 20, -13, -13]
+    [194, 2, 32, 16, -16, -10]
+    [228, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_127_tail4, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/27_tail4_4x.png", "gfx/27_tail4_4x_mask.png") {
+    [8, 8, 138, 62, -69, -33]
+    [154, 8, 119, 58, -63, -37]
+    [281, 8, 134, 73, -67, -44]
+    [423, 8, 119, 85, -63, -55]
+    [550, 8, 138, 96, -69, -57]
+    [696, 8, 119, 85, -56, -55]
+    [823, 8, 134, 73, -67, -44]
+    [965, 8, 119, 58, -56, -37]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_spin_127, var[0x97, 0, 0xFF] % 4) {
+    0: ss_aircraft_127_tail1;
+    1: ss_aircraft_127_tail2;
+    2: ss_aircraft_127_tail3;
+    ss_aircraft_127_tail4;
+}
+spriteset (ss_aircraft_127_ground, "gfx/27_ground_1x.png") {
+    [2, 2, 32, 13, -16, -7]
+    [36, 2, 28, 14, -15, -9]
+    [66, 2, 32, 16, -16, -10]
+    [100, 2, 28, 20, -15, -13]
+    [130, 2, 32, 23, -16, -14]
+    [164, 2, 28, 20, -13, -13]
+    [194, 2, 32, 16, -16, -10]
+    [228, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_127_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/27_ground_4x.png", "gfx/27_ground_4x_mask.png") {
+    [8, 8, 138, 62, -69, -33]
+    [154, 8, 119, 58, -63, -37]
+    [281, 8, 134, 73, -67, -44]
+    [423, 8, 119, 87, -63, -55]
+    [550, 8, 138, 97, -69, -57]
+    [696, 8, 119, 87, -56, -55]
+    [823, 8, 134, 73, -67, -44]
+    [965, 8, 119, 58, -56, -37]
+}
+spriteset (ss_aircraft_127_ground_tail1, "gfx/27_ground_tail1_1x.png") {
+    [2, 2, 32, 13, -16, -7]
+    [36, 2, 28, 14, -15, -9]
+    [66, 2, 32, 16, -16, -10]
+    [100, 2, 28, 20, -15, -13]
+    [130, 2, 32, 23, -16, -14]
+    [164, 2, 28, 20, -13, -13]
+    [194, 2, 32, 16, -16, -10]
+    [228, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_127_ground_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/27_ground_tail1_4x.png", "gfx/27_ground_tail1_4x_mask.png") {
+    [8, 8, 138, 62, -69, -33]
+    [154, 8, 119, 58, -63, -37]
+    [281, 8, 134, 73, -67, -44]
+    [423, 8, 119, 87, -63, -55]
+    [550, 8, 138, 97, -69, -57]
+    [696, 8, 119, 87, -56, -55]
+    [823, 8, 134, 73, -67, -44]
+    [965, 8, 119, 58, -56, -37]
+}
+spriteset (ss_aircraft_127_ground_tail2, "gfx/27_ground_tail2_1x.png") {
+    [2, 2, 32, 13, -16, -7]
+    [36, 2, 28, 14, -15, -9]
+    [66, 2, 32, 16, -16, -10]
+    [100, 2, 28, 20, -15, -13]
+    [130, 2, 32, 23, -16, -14]
+    [164, 2, 28, 20, -13, -13]
+    [194, 2, 32, 16, -16, -10]
+    [228, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_127_ground_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/27_ground_tail2_4x.png", "gfx/27_ground_tail2_4x_mask.png") {
+    [8, 8, 138, 62, -69, -33]
+    [154, 8, 119, 58, -63, -37]
+    [281, 8, 134, 73, -67, -44]
+    [423, 8, 119, 87, -63, -55]
+    [550, 8, 138, 97, -69, -57]
+    [696, 8, 119, 87, -56, -55]
+    [823, 8, 134, 73, -67, -44]
+    [965, 8, 119, 58, -56, -37]
+}
+spriteset (ss_aircraft_127_ground_tail3, "gfx/27_ground_tail3_1x.png") {
+    [2, 2, 32, 13, -16, -7]
+    [36, 2, 28, 14, -15, -9]
+    [66, 2, 32, 16, -16, -10]
+    [100, 2, 28, 20, -15, -13]
+    [130, 2, 32, 23, -16, -14]
+    [164, 2, 28, 20, -13, -13]
+    [194, 2, 32, 16, -16, -10]
+    [228, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_127_ground_tail3, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/27_ground_tail3_4x.png", "gfx/27_ground_tail3_4x_mask.png") {
+    [8, 8, 138, 62, -69, -33]
+    [154, 8, 119, 58, -63, -37]
+    [281, 8, 134, 73, -67, -44]
+    [423, 8, 119, 87, -63, -55]
+    [550, 8, 138, 97, -69, -57]
+    [696, 8, 119, 87, -56, -55]
+    [823, 8, 134, 73, -67, -44]
+    [965, 8, 119, 58, -56, -37]
+}
+spriteset (ss_aircraft_127_ground_tail4, "gfx/27_ground_tail4_1x.png") {
+    [2, 2, 32, 13, -16, -7]
+    [36, 2, 28, 14, -15, -9]
+    [66, 2, 32, 16, -16, -10]
+    [100, 2, 28, 20, -15, -13]
+    [130, 2, 32, 23, -16, -14]
+    [164, 2, 28, 20, -13, -13]
+    [194, 2, 32, 16, -16, -10]
+    [228, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_127_ground_tail4, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/27_ground_tail4_4x.png", "gfx/27_ground_tail4_4x_mask.png") {
+    [8, 8, 138, 62, -69, -33]
+    [154, 8, 119, 58, -63, -37]
+    [281, 8, 134, 73, -67, -44]
+    [423, 8, 119, 87, -63, -55]
+    [550, 8, 138, 97, -69, -57]
+    [696, 8, 119, 87, -56, -55]
+    [823, 8, 134, 73, -67, -44]
+    [965, 8, 119, 58, -56, -37]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_ground_spin_127, (var[0x9A, 0, 0xFF] + 2 * var[0x9C, 0, 0xFF]) % 4) {
+    0: ss_aircraft_127_ground_tail1;
+    1: ss_aircraft_127_ground_tail2;
+    2: ss_aircraft_127_ground_tail3;
+    ss_aircraft_127_ground_tail4;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_127, flight_state) {
+    0x00: ss_aircraft_127_ground;
+    0x02..0x04: ss_aircraft_127_ground;
+    0x01: sw_ground_spin_127;
+    0x05..0x0E: sw_ground_spin_127;
+    0x14..0x16: sw_ground_spin_127;
+    sw_spin_127;
+}
+// de Havilland Canada Dash 8.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_127, cargo_type_in_veh) {
+    MAIL: return 15;
+    GOOD: return 15;
+    VALU: return 10;
+    GOLD: return 10;
+    DIAM: return 10;
+    return 40;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_127, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_127, 127) {
+    property {
+        name: string(STR_NAME_127);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1984, 10, 23);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 12;
+        running_cost_factor: 79;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 280 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_SMALL;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_PROPELLER;
+        passenger_capacity: 40;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_127;
+        mail_capacity: sw_mail_127;
+        purchase_passenger_capacity: 40;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_127;
+        default: sw_graphics_127;
+    }
+}
+
+spriteset (ss_aircraft_128, "gfx/28_1x.png") {
+    [2, 2, 34, 19, -17, -11]
+    [38, 2, 34, 15, -19, -8]
+    [74, 2, 44, 18, -22, -9]
+    [120, 2, 34, 24, -19, -15]
+    [156, 2, 34, 28, -17, -17]
+    [192, 2, 34, 24, -15, -15]
+    [228, 2, 44, 18, -22, -9]
+    [274, 2, 34, 15, -15, -8]
+}
+alternative_sprites (ss_aircraft_128, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/28_4x.png", "gfx/28_4x_mask.png") {
+    [8, 8, 144, 83, -72, -46]
+    [160, 8, 144, 66, -79, -35]
+    [312, 8, 180, 75, -90, -37]
+    [500, 8, 144, 101, -79, -64]
+    [652, 8, 144, 118, -72, -69]
+    [804, 8, 144, 101, -65, -64]
+    [956, 8, 180, 75, -90, -37]
+    [1144, 8, 144, 66, -65, -35]
+}
+spriteset (ss_aircraft_128_ground, "gfx/28_ground_1x.png") {
+    [2, 2, 34, 19, -17, -11]
+    [38, 2, 34, 15, -19, -8]
+    [74, 2, 44, 18, -22, -9]
+    [120, 2, 34, 24, -19, -15]
+    [156, 2, 34, 28, -17, -17]
+    [192, 2, 34, 24, -15, -15]
+    [228, 2, 44, 18, -22, -9]
+    [274, 2, 34, 15, -15, -8]
+}
+alternative_sprites (ss_aircraft_128_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/28_ground_4x.png", "gfx/28_ground_4x_mask.png") {
+    [8, 8, 144, 83, -72, -46]
+    [160, 8, 144, 66, -79, -35]
+    [312, 8, 180, 75, -90, -37]
+    [500, 8, 144, 103, -79, -64]
+    [652, 8, 144, 118, -72, -69]
+    [804, 8, 144, 102, -65, -64]
+    [956, 8, 180, 75, -90, -37]
+    [1144, 8, 144, 66, -65, -35]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_128, flight_state) {
+    0x00..0x0E: ss_aircraft_128_ground;
+    0x14..0x16: ss_aircraft_128_ground;
+    ss_aircraft_128;
+}
+// Fokker 100.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_128, cargo_type_in_veh) {
+    MAIL: return 50;
+    GOOD: return 50;
+    VALU: return 25;
+    GOLD: return 25;
+    DIAM: return 25;
+    return 105;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_128, cargo_type_in_veh) {
+    PASS: return 10;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_128, 128) {
+    property {
+        name: string(STR_NAME_128);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1988, 2, 1);
+        model_life: 28;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 23;
+        running_cost_factor: 133;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 464 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_SMALL;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 105;
+        mail_capacity: 10;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_128;
+        mail_capacity: sw_mail_128;
+        purchase_passenger_capacity: 105;
+        purchase_mail_capacity: 10;
+        purchase: ss_aircraft_128;
+        default: sw_graphics_128;
+    }
+}
+
+spriteset (ss_aircraft_129, "gfx/29_1x.png") {
+    [2, 2, 42, 21, -21, -11]
+    [46, 2, 37, 18, -21, -9]
+    [85, 2, 45, 21, -22, -11]
+    [132, 2, 37, 25, -21, -16]
+    [171, 2, 40, 25, -20, -13]
+    [213, 2, 37, 25, -16, -16]
+    [252, 2, 45, 21, -23, -11]
+    [299, 2, 37, 18, -16, -9]
+}
+alternative_sprites (ss_aircraft_129, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/29_4x.png", "gfx/29_4x_mask.png") {
+    [8, 8, 170, 91, -85, -48]
+    [186, 8, 156, 75, -88, -37]
+    [350, 8, 188, 93, -94, -50]
+    [546, 8, 156, 109, -88, -70]
+    [710, 8, 170, 132, -85, -80]
+    [888, 8, 156, 109, -68, -70]
+    [1052, 8, 188, 93, -94, -50]
+    [1248, 8, 156, 75, -68, -37]
+}
+spriteset (ss_aircraft_129_ground, "gfx/29_ground_1x.png") {
+    [2, 2, 42, 21, -21, -11]
+    [46, 2, 37, 18, -21, -9]
+    [85, 2, 45, 21, -22, -11]
+    [132, 2, 37, 26, -21, -16]
+    [171, 2, 40, 25, -20, -13]
+    [213, 2, 37, 26, -16, -16]
+    [252, 2, 45, 21, -23, -11]
+    [299, 2, 37, 18, -16, -9]
+}
+alternative_sprites (ss_aircraft_129_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/29_ground_4x.png", "gfx/29_ground_4x_mask.png") {
+    [8, 8, 170, 91, -85, -48]
+    [186, 8, 156, 75, -88, -37]
+    [350, 8, 188, 93, -94, -50]
+    [546, 8, 156, 112, -88, -70]
+    [710, 8, 170, 132, -85, -80]
+    [888, 8, 156, 112, -68, -70]
+    [1052, 8, 188, 93, -94, -50]
+    [1248, 8, 156, 75, -68, -37]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_129, flight_state) {
+    0x00..0x0E: ss_aircraft_129_ground;
+    0x14..0x16: ss_aircraft_129_ground;
+    ss_aircraft_129;
+}
+// Airbus A320.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_129, cargo_type_in_veh) {
+    MAIL: return 75;
+    GOOD: return 75;
+    VALU: return 40;
+    GOLD: return 40;
+    DIAM: return 40;
+    return 150;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_129, cargo_type_in_veh) {
+    PASS: return 20;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_129, 129) {
+    property {
+        name: string(STR_NAME_129);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1988, 3, 1);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 32;
+        running_cost_factor: 134;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 512 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 150;
+        mail_capacity: 20;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_129;
+        mail_capacity: sw_mail_129;
+        purchase_passenger_capacity: 150;
+        purchase_mail_capacity: 20;
+        purchase: ss_aircraft_129;
+        default: sw_graphics_129;
+    }
+}
+
+spriteset (ss_aircraft_130, "gfx/30_1x.png") {
+    [2, 2, 34, 16, -17, -9]
+    [38, 2, 28, 14, -15, -9]
+    [68, 2, 34, 17, -17, -10]
+    [104, 2, 28, 20, -15, -13]
+    [134, 2, 34, 23, -17, -14]
+    [170, 2, 28, 20, -13, -13]
+    [200, 2, 34, 17, -17, -10]
+    [236, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_130, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/30_4x.png", "gfx/30_4x_mask.png") {
+    [8, 8, 142, 71, -71, -38]
+    [158, 8, 120, 60, -64, -37]
+    [286, 8, 144, 75, -72, -45]
+    [438, 8, 120, 85, -64, -54]
+    [566, 8, 142, 98, -71, -58]
+    [716, 8, 120, 85, -56, -54]
+    [844, 8, 144, 75, -72, -45]
+    [996, 8, 120, 60, -56, -37]
+}
+spriteset (ss_aircraft_130_tail1, "gfx/30_tail1_1x.png") {
+    [2, 2, 34, 16, -17, -9]
+    [38, 2, 28, 14, -15, -9]
+    [68, 2, 34, 17, -17, -10]
+    [104, 2, 28, 20, -15, -13]
+    [134, 2, 34, 23, -17, -14]
+    [170, 2, 28, 20, -13, -13]
+    [200, 2, 34, 17, -17, -10]
+    [236, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_130_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/30_tail1_4x.png", "gfx/30_tail1_4x_mask.png") {
+    [8, 8, 142, 71, -71, -38]
+    [158, 8, 120, 60, -64, -37]
+    [286, 8, 144, 75, -72, -45]
+    [438, 8, 120, 85, -64, -54]
+    [566, 8, 142, 98, -71, -58]
+    [716, 8, 120, 85, -56, -54]
+    [844, 8, 144, 75, -72, -45]
+    [996, 8, 120, 60, -56, -37]
+}
+spriteset (ss_aircraft_130_tail2, "gfx/30_tail2_1x.png") {
+    [2, 2, 34, 16, -17, -9]
+    [38, 2, 28, 14, -15, -9]
+    [68, 2, 34, 17, -17, -10]
+    [104, 2, 28, 20, -15, -13]
+    [134, 2, 34, 23, -17, -14]
+    [170, 2, 28, 20, -13, -13]
+    [200, 2, 34, 17, -17, -10]
+    [236, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_130_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/30_tail2_4x.png", "gfx/30_tail2_4x_mask.png") {
+    [8, 8, 142, 71, -71, -38]
+    [158, 8, 120, 60, -64, -37]
+    [286, 8, 144, 75, -72, -45]
+    [438, 8, 120, 85, -64, -54]
+    [566, 8, 142, 98, -71, -58]
+    [716, 8, 120, 85, -56, -54]
+    [844, 8, 144, 75, -72, -45]
+    [996, 8, 120, 60, -56, -37]
+}
+spriteset (ss_aircraft_130_tail3, "gfx/30_tail3_1x.png") {
+    [2, 2, 34, 16, -17, -9]
+    [38, 2, 28, 14, -15, -9]
+    [68, 2, 34, 17, -17, -10]
+    [104, 2, 28, 20, -15, -13]
+    [134, 2, 34, 23, -17, -14]
+    [170, 2, 28, 20, -13, -13]
+    [200, 2, 34, 17, -17, -10]
+    [236, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_130_tail3, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/30_tail3_4x.png", "gfx/30_tail3_4x_mask.png") {
+    [8, 8, 142, 71, -71, -38]
+    [158, 8, 120, 60, -64, -37]
+    [286, 8, 144, 75, -72, -45]
+    [438, 8, 120, 85, -64, -54]
+    [566, 8, 142, 98, -71, -58]
+    [716, 8, 120, 85, -56, -54]
+    [844, 8, 144, 75, -72, -45]
+    [996, 8, 120, 60, -56, -37]
+}
+spriteset (ss_aircraft_130_tail4, "gfx/30_tail4_1x.png") {
+    [2, 2, 34, 16, -17, -9]
+    [38, 2, 28, 14, -15, -9]
+    [68, 2, 34, 17, -17, -10]
+    [104, 2, 28, 20, -15, -13]
+    [134, 2, 34, 23, -17, -14]
+    [170, 2, 28, 20, -13, -13]
+    [200, 2, 34, 17, -17, -10]
+    [236, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_130_tail4, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/30_tail4_4x.png", "gfx/30_tail4_4x_mask.png") {
+    [8, 8, 142, 71, -71, -38]
+    [158, 8, 120, 60, -64, -37]
+    [286, 8, 144, 75, -72, -45]
+    [438, 8, 120, 85, -64, -54]
+    [566, 8, 142, 98, -71, -58]
+    [716, 8, 120, 85, -56, -54]
+    [844, 8, 144, 75, -72, -45]
+    [996, 8, 120, 60, -56, -37]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_spin_130, var[0x97, 0, 0xFF] % 4) {
+    0: ss_aircraft_130_tail1;
+    1: ss_aircraft_130_tail2;
+    2: ss_aircraft_130_tail3;
+    ss_aircraft_130_tail4;
+}
+spriteset (ss_aircraft_130_ground, "gfx/30_ground_1x.png") {
+    [2, 2, 34, 16, -17, -9]
+    [38, 2, 28, 14, -15, -9]
+    [68, 2, 34, 17, -17, -10]
+    [104, 2, 28, 20, -15, -13]
+    [134, 2, 34, 23, -17, -14]
+    [170, 2, 28, 20, -13, -13]
+    [200, 2, 34, 17, -17, -10]
+    [236, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_130_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/30_ground_4x.png", "gfx/30_ground_4x_mask.png") {
+    [8, 8, 142, 71, -71, -38]
+    [158, 8, 120, 60, -64, -37]
+    [286, 8, 144, 75, -72, -45]
+    [438, 8, 120, 87, -64, -54]
+    [566, 8, 142, 99, -71, -58]
+    [716, 8, 120, 87, -56, -54]
+    [844, 8, 144, 75, -72, -45]
+    [996, 8, 120, 60, -56, -37]
+}
+spriteset (ss_aircraft_130_ground_tail1, "gfx/30_ground_tail1_1x.png") {
+    [2, 2, 34, 16, -17, -9]
+    [38, 2, 28, 14, -15, -9]
+    [68, 2, 34, 17, -17, -10]
+    [104, 2, 28, 20, -15, -13]
+    [134, 2, 34, 23, -17, -14]
+    [170, 2, 28, 20, -13, -13]
+    [200, 2, 34, 17, -17, -10]
+    [236, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_130_ground_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/30_ground_tail1_4x.png", "gfx/30_ground_tail1_4x_mask.png") {
+    [8, 8, 142, 71, -71, -38]
+    [158, 8, 120, 60, -64, -37]
+    [286, 8, 144, 75, -72, -45]
+    [438, 8, 120, 87, -64, -54]
+    [566, 8, 142, 99, -71, -58]
+    [716, 8, 120, 87, -56, -54]
+    [844, 8, 144, 75, -72, -45]
+    [996, 8, 120, 60, -56, -37]
+}
+spriteset (ss_aircraft_130_ground_tail2, "gfx/30_ground_tail2_1x.png") {
+    [2, 2, 34, 16, -17, -9]
+    [38, 2, 28, 14, -15, -9]
+    [68, 2, 34, 17, -17, -10]
+    [104, 2, 28, 20, -15, -13]
+    [134, 2, 34, 23, -17, -14]
+    [170, 2, 28, 20, -13, -13]
+    [200, 2, 34, 17, -17, -10]
+    [236, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_130_ground_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/30_ground_tail2_4x.png", "gfx/30_ground_tail2_4x_mask.png") {
+    [8, 8, 142, 71, -71, -38]
+    [158, 8, 120, 60, -64, -37]
+    [286, 8, 144, 75, -72, -45]
+    [438, 8, 120, 87, -64, -54]
+    [566, 8, 142, 99, -71, -58]
+    [716, 8, 120, 87, -56, -54]
+    [844, 8, 144, 75, -72, -45]
+    [996, 8, 120, 60, -56, -37]
+}
+spriteset (ss_aircraft_130_ground_tail3, "gfx/30_ground_tail3_1x.png") {
+    [2, 2, 34, 16, -17, -9]
+    [38, 2, 28, 14, -15, -9]
+    [68, 2, 34, 17, -17, -10]
+    [104, 2, 28, 20, -15, -13]
+    [134, 2, 34, 23, -17, -14]
+    [170, 2, 28, 20, -13, -13]
+    [200, 2, 34, 17, -17, -10]
+    [236, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_130_ground_tail3, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/30_ground_tail3_4x.png", "gfx/30_ground_tail3_4x_mask.png") {
+    [8, 8, 142, 71, -71, -38]
+    [158, 8, 120, 60, -64, -37]
+    [286, 8, 144, 75, -72, -45]
+    [438, 8, 120, 87, -64, -54]
+    [566, 8, 142, 99, -71, -58]
+    [716, 8, 120, 87, -56, -54]
+    [844, 8, 144, 75, -72, -45]
+    [996, 8, 120, 60, -56, -37]
+}
+spriteset (ss_aircraft_130_ground_tail4, "gfx/30_ground_tail4_1x.png") {
+    [2, 2, 34, 16, -17, -9]
+    [38, 2, 28, 14, -15, -9]
+    [68, 2, 34, 17, -17, -10]
+    [104, 2, 28, 20, -15, -13]
+    [134, 2, 34, 23, -17, -14]
+    [170, 2, 28, 20, -13, -13]
+    [200, 2, 34, 17, -17, -10]
+    [236, 2, 28, 14, -13, -9]
+}
+alternative_sprites (ss_aircraft_130_ground_tail4, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/30_ground_tail4_4x.png", "gfx/30_ground_tail4_4x_mask.png") {
+    [8, 8, 142, 71, -71, -38]
+    [158, 8, 120, 60, -64, -37]
+    [286, 8, 144, 75, -72, -45]
+    [438, 8, 120, 87, -64, -54]
+    [566, 8, 142, 99, -71, -58]
+    [716, 8, 120, 87, -56, -54]
+    [844, 8, 144, 75, -72, -45]
+    [996, 8, 120, 60, -56, -37]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_ground_spin_130, (var[0x9A, 0, 0xFF] + 2 * var[0x9C, 0, 0xFF]) % 4) {
+    0: ss_aircraft_130_ground_tail1;
+    1: ss_aircraft_130_ground_tail2;
+    2: ss_aircraft_130_ground_tail3;
+    ss_aircraft_130_ground_tail4;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_130, flight_state) {
+    0x00: ss_aircraft_130_ground;
+    0x02..0x04: ss_aircraft_130_ground;
+    0x01: sw_ground_spin_130;
+    0x05..0x0E: sw_ground_spin_130;
+    0x14..0x16: sw_ground_spin_130;
+    sw_spin_130;
+}
+// ATR 72.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_130, cargo_type_in_veh) {
+    MAIL: return 30;
+    GOOD: return 30;
+    VALU: return 15;
+    GOLD: return 15;
+    DIAM: return 15;
+    return 70;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_130, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_130, 130) {
+    property {
+        name: string(STR_NAME_130);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1989, 10, 1);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 16;
+        running_cost_factor: 81;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 320 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_SMALL;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_PROPELLER;
+        passenger_capacity: 70;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_130;
+        mail_capacity: sw_mail_130;
+        purchase_passenger_capacity: 70;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_130;
+        default: sw_graphics_130;
+    }
+}
+
+spriteset (ss_aircraft_131, "gfx/31_1x.png") {
+    [2, 2, 26, 15, -13, -8]
+    [30, 2, 26, 12, -14, -6]
+    [58, 2, 34, 14, -17, -7]
+    [94, 2, 26, 19, -14, -12]
+    [122, 2, 26, 22, -13, -13]
+    [150, 2, 26, 19, -12, -12]
+    [178, 2, 34, 14, -17, -7]
+    [214, 2, 26, 12, -12, -6]
+}
+alternative_sprites (ss_aircraft_131, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/31_4x.png", "gfx/31_4x_mask.png") {
+    [8, 8, 114, 65, -57, -35]
+    [130, 8, 112, 56, -60, -27]
+    [250, 8, 144, 64, -72, -33]
+    [402, 8, 112, 82, -60, -50]
+    [522, 8, 114, 98, -57, -56]
+    [644, 8, 112, 82, -52, -50]
+    [764, 8, 144, 64, -72, -33]
+    [916, 8, 112, 56, -52, -27]
+}
+spriteset (ss_aircraft_131_ground, "gfx/31_ground_1x.png") {
+    [2, 2, 26, 15, -13, -8]
+    [30, 2, 26, 12, -14, -6]
+    [58, 2, 34, 14, -17, -7]
+    [94, 2, 26, 19, -14, -12]
+    [122, 2, 26, 23, -13, -13]
+    [150, 2, 26, 19, -12, -12]
+    [178, 2, 34, 14, -17, -7]
+    [214, 2, 26, 12, -12, -6]
+}
+alternative_sprites (ss_aircraft_131_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/31_ground_4x.png", "gfx/31_ground_4x_mask.png") {
+    [8, 8, 114, 65, -57, -35]
+    [130, 8, 112, 56, -60, -27]
+    [250, 8, 144, 64, -72, -33]
+    [402, 8, 112, 84, -60, -50]
+    [522, 8, 114, 98, -57, -56]
+    [644, 8, 112, 84, -52, -50]
+    [764, 8, 144, 64, -72, -33]
+    [916, 8, 112, 56, -52, -27]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_131, flight_state) {
+    0x00..0x0E: ss_aircraft_131_ground;
+    0x14..0x16: ss_aircraft_131_ground;
+    ss_aircraft_131;
+}
+// Bombardier CRJ.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_131, cargo_type_in_veh) {
+    MAIL: return 20;
+    GOOD: return 20;
+    VALU: return 10;
+    GOLD: return 10;
+    DIAM: return 10;
+    return 50;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_131, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_131, 131) {
+    property {
+        name: string(STR_NAME_131);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1992, 10, 1);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 17;
+        running_cost_factor: 104;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 512 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_SMALL;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 50;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_131;
+        mail_capacity: sw_mail_131;
+        purchase_passenger_capacity: 50;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_131;
+        default: sw_graphics_131;
+    }
+}
+
+spriteset (ss_aircraft_132, "gfx/32_1x.png") {
+    [2, 2, 66, 33, -33, -21]
+    [70, 2, 57, 28, -32, -17]
+    [129, 2, 72, 35, -36, -22]
+    [203, 2, 58, 37, -32, -26]
+    [263, 2, 66, 39, -33, -23]
+    [331, 2, 58, 37, -26, -26]
+    [391, 2, 72, 35, -36, -22]
+    [465, 2, 58, 28, -26, -17]
+}
+alternative_sprites (ss_aircraft_132, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/32_4x.png", "gfx/32_4x_mask.png") {
+    [8, 8, 274, 140, -137, -88]
+    [290, 8, 238, 118, -133, -69]
+    [536, 8, 293, 145, -146, -92]
+    [837, 8, 238, 155, -133, -109]
+    [1083, 8, 274, 193, -137, -127]
+    [1365, 8, 238, 154, -105, -108]
+    [1611, 8, 293, 144, -147, -91]
+    [1912, 8, 238, 117, -105, -69]
+}
+spriteset (ss_aircraft_132_ground, "gfx/32_ground_1x.png") {
+    [2, 2, 66, 33, -33, -21]
+    [70, 2, 57, 28, -32, -17]
+    [129, 2, 72, 35, -36, -22]
+    [203, 2, 58, 39, -32, -26]
+    [263, 2, 66, 39, -33, -23]
+    [331, 2, 58, 39, -26, -26]
+    [391, 2, 72, 35, -36, -22]
+    [465, 2, 58, 28, -26, -17]
+}
+alternative_sprites (ss_aircraft_132_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/32_ground_4x.png", "gfx/32_ground_4x_mask.png") {
+    [8, 8, 274, 140, -137, -88]
+    [290, 8, 238, 118, -133, -69]
+    [536, 8, 293, 145, -146, -92]
+    [837, 8, 238, 163, -133, -109]
+    [1083, 8, 274, 198, -137, -127]
+    [1365, 8, 238, 163, -105, -108]
+    [1611, 8, 293, 144, -147, -91]
+    [1912, 8, 238, 117, -105, -69]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_132, flight_state) {
+    0x00..0x0E: ss_aircraft_132_ground;
+    0x14..0x16: ss_aircraft_132_ground;
+    ss_aircraft_132;
+}
+// Airbus A330.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_132, cargo_type_in_veh) {
+    MAIL: return 175;
+    GOOD: return 175;
+    VALU: return 90;
+    GOLD: return 90;
+    DIAM: return 90;
+    return 335;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_132, cargo_type_in_veh) {
+    PASS: return 75;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_132, 132) {
+    property {
+        name: string(STR_NAME_132);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1993, 12, 30);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 50;
+        running_cost_factor: 187;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 544 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET_BIG;
+        passenger_capacity: 335;
+        mail_capacity: 75;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_132;
+        mail_capacity: sw_mail_132;
+        purchase_passenger_capacity: 335;
+        purchase_mail_capacity: 75;
+        purchase: ss_aircraft_132;
+        default: sw_graphics_132;
+    }
+}
+
+spriteset (ss_aircraft_133, "gfx/33_1x.png") {
+    [2, 2, 68, 34, -34, -18]
+    [72, 2, 58, 28, -33, -13]
+    [132, 2, 70, 35, -35, -19]
+    [204, 2, 58, 38, -33, -24]
+    [264, 2, 68, 38, -34, -19]
+    [334, 2, 58, 38, -25, -24]
+    [394, 2, 70, 35, -35, -19]
+    [466, 2, 58, 28, -25, -13]
+}
+alternative_sprites (ss_aircraft_133, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/33_4x.png", "gfx/33_4x_mask.png") {
+    [8, 8, 278, 144, -139, -75]
+    [294, 8, 241, 119, -137, -56]
+    [543, 8, 290, 143, -145, -77]
+    [841, 8, 241, 158, -137, -101]
+    [1090, 8, 278, 196, -139, -119]
+    [1376, 8, 241, 159, -104, -101]
+    [1625, 8, 290, 143, -145, -77]
+    [1923, 8, 241, 119, -104, -56]
+}
+spriteset (ss_aircraft_133_ground, "gfx/33_ground_1x.png") {
+    [2, 2, 68, 34, -34, -18]
+    [72, 2, 58, 28, -33, -13]
+    [132, 2, 70, 35, -35, -19]
+    [204, 2, 58, 40, -33, -24]
+    [264, 2, 68, 38, -34, -19]
+    [334, 2, 58, 40, -25, -24]
+    [394, 2, 70, 35, -35, -19]
+    [466, 2, 58, 28, -25, -13]
+}
+alternative_sprites (ss_aircraft_133_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/33_ground_4x.png", "gfx/33_ground_4x_mask.png") {
+    [8, 8, 278, 144, -139, -75]
+    [294, 8, 241, 119, -137, -56]
+    [543, 8, 290, 143, -145, -77]
+    [841, 8, 241, 167, -137, -101]
+    [1090, 8, 278, 201, -139, -119]
+    [1376, 8, 241, 167, -104, -101]
+    [1625, 8, 290, 143, -145, -77]
+    [1923, 8, 241, 119, -104, -56]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_133, flight_state) {
+    0x00..0x0E: ss_aircraft_133_ground;
+    0x14..0x16: ss_aircraft_133_ground;
+    ss_aircraft_133;
+}
+// Boeing 777.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_133, cargo_type_in_veh) {
+    MAIL: return 225;
+    GOOD: return 225;
+    VALU: return 115;
+    GOLD: return 115;
+    DIAM: return 115;
+    return 300;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_133, cargo_type_in_veh) {
+    PASS: return 75;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_133, 133) {
+    property {
+        name: string(STR_NAME_133);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1995, 5, 15);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 59;
+        running_cost_factor: 206;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 560 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET_BIG;
+        passenger_capacity: 300;
+        mail_capacity: 75;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_133;
+        mail_capacity: sw_mail_133;
+        purchase_passenger_capacity: 300;
+        purchase_mail_capacity: 75;
+        purchase: ss_aircraft_133;
+        default: sw_graphics_133;
+    }
+}
+
+spriteset (ss_aircraft_134, "gfx/34_1x.png") {
+    [2, 2, 40, 23, -20, -12]
+    [44, 2, 40, 18, -23, -9]
+    [86, 2, 48, 22, -24, -13]
+    [136, 2, 39, 28, -22, -18]
+    [177, 2, 42, 27, -21, -14]
+    [221, 2, 39, 28, -17, -18]
+    [262, 2, 48, 22, -24, -13]
+    [312, 2, 40, 18, -17, -9]
+}
+alternative_sprites (ss_aircraft_134, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/34_4x.png", "gfx/34_4x_mask.png") {
+    [8, 8, 172, 100, -86, -52]
+    [188, 8, 168, 81, -95, -40]
+    [364, 8, 202, 100, -101, -59]
+    [574, 8, 168, 118, -95, -77]
+    [750, 8, 172, 146, -86, -92]
+    [930, 8, 168, 119, -73, -78]
+    [1106, 8, 202, 100, -101, -59]
+    [1316, 8, 168, 81, -73, -40]
+}
+spriteset (ss_aircraft_134_ground, "gfx/34_ground_1x.png") {
+    [2, 2, 40, 23, -20, -12]
+    [44, 2, 40, 18, -23, -9]
+    [86, 2, 48, 22, -24, -13]
+    [136, 2, 39, 28, -22, -18]
+    [177, 2, 42, 27, -21, -14]
+    [221, 2, 39, 28, -17, -18]
+    [262, 2, 48, 22, -24, -13]
+    [312, 2, 40, 18, -17, -9]
+}
+alternative_sprites (ss_aircraft_134_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/34_ground_4x.png", "gfx/34_ground_4x_mask.png") {
+    [8, 8, 172, 100, -86, -52]
+    [188, 8, 168, 81, -95, -40]
+    [364, 8, 202, 100, -101, -59]
+    [574, 8, 168, 121, -95, -77]
+    [750, 8, 172, 147, -86, -92]
+    [930, 8, 168, 122, -73, -78]
+    [1106, 8, 202, 100, -101, -59]
+    [1316, 8, 168, 81, -73, -40]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_134, flight_state) {
+    0x00..0x0E: ss_aircraft_134_ground;
+    0x14..0x16: ss_aircraft_134_ground;
+    ss_aircraft_134;
+}
+// Boeing 737NG.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_134, cargo_type_in_veh) {
+    MAIL: return 80;
+    GOOD: return 80;
+    VALU: return 40;
+    GOLD: return 40;
+    DIAM: return 40;
+    return 160;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_134, cargo_type_in_veh) {
+    PASS: return 20;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_134, 134) {
+    property {
+        name: string(STR_NAME_134);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(1997, 12, 1);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 31;
+        running_cost_factor: 139;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 512 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 160;
+        mail_capacity: 20;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_134;
+        mail_capacity: sw_mail_134;
+        purchase_passenger_capacity: 160;
+        purchase_mail_capacity: 20;
+        purchase: ss_aircraft_134;
+        default: sw_graphics_134;
+    }
+}
+
+spriteset (ss_aircraft_135, "gfx/35_1x.png") {
+    [2, 2, 8, 12, -3, -5]
+    [12, 2, 20, 10, -13, -5]
+    [34, 2, 27, 8, -18, -6]
+    [63, 2, 20, 15, -13, -11]
+    [85, 2, 8, 19, -5, -14]
+    [95, 2, 19, 16, -7, -12]
+    [116, 2, 27, 9, -9, -7]
+    [145, 2, 20, 9, -7, -5]
+}
+alternative_sprites (ss_aircraft_135, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/35_4x.png", "gfx/35_4x_mask.png") {
+    [8, 8, 40, 50, -16, -24]
+    [56, 8, 82, 45, -51, -22]
+    [146, 8, 112, 37, -72, -26]
+    [266, 8, 85, 65, -54, -47]
+    [359, 8, 40, 78, -24, -56]
+    [407, 8, 82, 66, -31, -48]
+    [497, 8, 112, 39, -40, -28]
+    [617, 8, 85, 40, -31, -22]
+}
+spriteset (ss_rotor_135, "gfx/35_rotor_1x.png") {
+    [2, 2, 8, 7, -1, -1]
+    [12, 2, 8, 7, -1, -1]
+    [22, 2, 2, 6, -1, -4]
+    [26, 2, 9, 7, -1, -3]
+}
+alternative_sprites (ss_rotor_135, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/35_rotor_4x.png", "gfx/35_rotor_4x_mask.png") {
+    [8, 8, 96, 46, -48, -18]
+    [112, 8, 96, 46, -48, -18]
+    [216, 8, 104, 52, -51, -21]
+    [328, 8, 90, 44, -45, -17]
+}
+spriteset (ss_aircraft_135_tail1, "gfx/35_tail1_1x.png") {
+    [2, 2, 8, 11, -3, -5]
+    [12, 2, 20, 10, -13, -5]
+    [34, 2, 27, 8, -18, -6]
+    [63, 2, 20, 16, -13, -12]
+    [85, 2, 8, 19, -5, -14]
+    [95, 2, 20, 16, -7, -12]
+    [117, 2, 27, 9, -9, -7]
+    [146, 2, 20, 9, -7, -5]
+}
+alternative_sprites (ss_aircraft_135_tail1, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/35_tail1_4x.png", "gfx/35_tail1_4x_mask.png") {
+    [8, 8, 40, 50, -16, -24]
+    [56, 8, 83, 45, -52, -22]
+    [147, 8, 113, 38, -73, -27]
+    [268, 8, 85, 67, -54, -49]
+    [361, 8, 40, 79, -24, -57]
+    [409, 8, 83, 68, -31, -50]
+    [500, 8, 113, 40, -40, -29]
+    [621, 8, 85, 39, -31, -22]
+}
+spriteset (ss_aircraft_135_tail2, "gfx/35_tail2_1x.png") {
+    [2, 2, 8, 11, -3, -5]
+    [12, 2, 19, 10, -12, -5]
+    [33, 2, 27, 8, -18, -6]
+    [62, 2, 20, 16, -13, -12]
+    [84, 2, 8, 19, -5, -14]
+    [94, 2, 19, 16, -7, -12]
+    [115, 2, 27, 9, -9, -7]
+    [144, 2, 20, 9, -7, -5]
+}
+alternative_sprites (ss_aircraft_135_tail2, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/35_tail2_4x.png", "gfx/35_tail2_4x_mask.png") {
+    [8, 8, 40, 49, -16, -24]
+    [56, 8, 81, 45, -50, -22]
+    [145, 8, 111, 37, -71, -26]
+    [264, 8, 85, 67, -54, -49]
+    [357, 8, 40, 81, -24, -59]
+    [405, 8, 81, 68, -31, -50]
+    [494, 8, 111, 38, -40, -27]
+    [613, 8, 85, 39, -31, -22]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_tail_135, var[0x46, 1, 0xFF] % 3) {
+    1: ss_aircraft_135_tail1;
+    2: ss_aircraft_135_tail2;
+    ss_aircraft_135;
+}
+spriteset (ss_aircraft_135_ground, "gfx/35_ground_1x.png") {
+    [2, 2, 8, 12, -3, -5]
+    [12, 2, 20, 10, -13, -5]
+    [34, 2, 27, 9, -18, -6]
+    [63, 2, 20, 15, -13, -11]
+    [85, 2, 8, 19, -5, -14]
+    [95, 2, 19, 16, -7, -12]
+    [116, 2, 27, 10, -9, -7]
+    [145, 2, 20, 9, -7, -5]
+}
+alternative_sprites (ss_aircraft_135_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/35_ground_4x.png", "gfx/35_ground_4x_mask.png") {
+    [8, 8, 40, 50, -16, -24]
+    [56, 8, 82, 45, -51, -22]
+    [146, 8, 112, 40, -72, -26]
+    [266, 8, 85, 65, -54, -47]
+    [359, 8, 40, 78, -24, -56]
+    [407, 8, 82, 66, -31, -48]
+    [497, 8, 112, 42, -40, -28]
+    [617, 8, 85, 40, -31, -22]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_135, flight_state) {
+    0x00..0x0E: ss_aircraft_135_ground;
+    0x14..0x16: ss_aircraft_135_ground;
+    sw_tail_135;
+}
+// Sikorsky S-92.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_135, cargo_type_in_veh) {
+    MAIL: return 15;
+    GOOD: return 15;
+    VALU: return 5;
+    GOLD: return 5;
+    DIAM: return 5;
+    return 22;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_135, cargo_type_in_veh) {
+    PASS: return 5;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_135, 135) {
+    property {
+        name: string(STR_NAME_135);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(2004, 9, 1);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 13;
+        running_cost_factor: 70;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 168 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_HELICOPTER;
+        acceleration: 20;
+        sound_effect: SOUND_TAKEOFF_HELICOPTER;
+        passenger_capacity: 22;
+        mail_capacity: 5;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_135;
+        mail_capacity: sw_mail_135;
+        purchase_passenger_capacity: 22;
+        purchase_mail_capacity: 5;
+        purchase: ss_aircraft_135;
+        rotor: ss_rotor_135;
+        default: sw_graphics_135;
+    }
+}
+
+spriteset (ss_aircraft_136, "gfx/36_1x.png") {
+    [2, 2, 28, 18, -14, -11]
+    [32, 2, 31, 15, -17, -9]
+    [65, 2, 40, 15, -20, -10]
+    [107, 2, 31, 21, -17, -15]
+    [140, 2, 28, 21, -14, -12]
+    [170, 2, 31, 21, -14, -15]
+    [203, 2, 39, 15, -19, -10]
+    [244, 2, 31, 15, -14, -9]
+}
+alternative_sprites (ss_aircraft_136, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/36_4x.png", "gfx/36_4x_mask.png") {
+    [8, 8, 122, 81, -61, -48]
+    [138, 8, 131, 65, -72, -38]
+    [277, 8, 164, 71, -82, -46]
+    [449, 8, 132, 92, -73, -63]
+    [589, 8, 122, 114, -61, -74]
+    [719, 8, 131, 91, -59, -63]
+    [858, 8, 164, 71, -82, -46]
+    [1030, 8, 132, 64, -59, -38]
+}
+spriteset (ss_aircraft_136_ground, "gfx/36_ground_1x.png") {
+    [2, 2, 28, 18, -14, -11]
+    [32, 2, 31, 15, -17, -9]
+    [65, 2, 40, 15, -20, -10]
+    [107, 2, 31, 21, -17, -15]
+    [140, 2, 28, 21, -14, -12]
+    [170, 2, 31, 21, -14, -15]
+    [203, 2, 39, 15, -19, -10]
+    [244, 2, 31, 15, -14, -9]
+}
+alternative_sprites (ss_aircraft_136_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/36_ground_4x.png", "gfx/36_ground_4x_mask.png") {
+    [8, 8, 122, 81, -61, -48]
+    [138, 8, 131, 65, -72, -38]
+    [277, 8, 164, 71, -82, -46]
+    [449, 8, 132, 93, -73, -63]
+    [589, 8, 122, 114, -61, -74]
+    [719, 8, 131, 93, -59, -63]
+    [858, 8, 164, 71, -82, -46]
+    [1030, 8, 132, 64, -59, -38]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_136, flight_state) {
+    0x00..0x0E: ss_aircraft_136_ground;
+    0x14..0x16: ss_aircraft_136_ground;
+    ss_aircraft_136;
+}
+// Embraer E190.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_136, cargo_type_in_veh) {
+    MAIL: return 50;
+    GOOD: return 50;
+    VALU: return 25;
+    GOLD: return 25;
+    DIAM: return 25;
+    return 110;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_136, cargo_type_in_veh) {
+    PASS: return 10;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_136, 136) {
+    property {
+        name: string(STR_NAME_136);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(2005, 8, 1);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 24;
+        running_cost_factor: 120;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 512 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_SMALL;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 110;
+        mail_capacity: 10;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_136;
+        mail_capacity: sw_mail_136;
+        purchase_passenger_capacity: 110;
+        purchase_mail_capacity: 10;
+        purchase: ss_aircraft_136;
+        default: sw_graphics_136;
+    }
+}
+
+spriteset (ss_aircraft_137, "gfx/37_1x.png") {
+    [2, 2, 86, 38, -43, -20]
+    [90, 2, 70, 35, -41, -15]
+    [162, 2, 80, 44, -40, -23]
+    [244, 2, 70, 48, -41, -31]
+    [316, 2, 86, 58, -43, -36]
+    [404, 2, 70, 48, -29, -31]
+    [476, 2, 80, 44, -40, -23]
+    [558, 2, 70, 35, -29, -15]
+}
+alternative_sprites (ss_aircraft_137, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/37_4x.png", "gfx/37_4x_mask.png") {
+    [8, 8, 350, 160, -175, -82]
+    [366, 8, 285, 146, -167, -63]
+    [659, 8, 328, 185, -164, -97]
+    [995, 8, 285, 199, -167, -129]
+    [1288, 8, 350, 246, -175, -153]
+    [1646, 8, 285, 199, -118, -129]
+    [1939, 8, 329, 185, -165, -97]
+    [2276, 8, 285, 146, -118, -63]
+}
+spriteset (ss_aircraft_137_ground, "gfx/37_ground_1x.png") {
+    [2, 2, 86, 38, -43, -20]
+    [90, 2, 70, 35, -41, -15]
+    [162, 2, 80, 44, -40, -23]
+    [244, 2, 70, 50, -41, -31]
+    [316, 2, 86, 60, -43, -36]
+    [404, 2, 70, 50, -29, -31]
+    [476, 2, 80, 44, -40, -23]
+    [558, 2, 70, 35, -29, -15]
+}
+alternative_sprites (ss_aircraft_137_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/37_ground_4x.png", "gfx/37_ground_4x_mask.png") {
+    [8, 8, 350, 160, -175, -82]
+    [366, 8, 285, 146, -167, -63]
+    [659, 8, 328, 185, -164, -97]
+    [995, 8, 285, 208, -167, -129]
+    [1288, 8, 350, 252, -175, -153]
+    [1646, 8, 285, 208, -118, -129]
+    [1939, 8, 329, 185, -165, -97]
+    [2276, 8, 285, 146, -118, -63]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_137, flight_state) {
+    0x00..0x0E: ss_aircraft_137_ground;
+    0x14..0x16: ss_aircraft_137_ground;
+    ss_aircraft_137;
+}
+// Airbus A380.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_137, cargo_type_in_veh) {
+    MAIL: return 355;
+    GOOD: return 355;
+    VALU: return 180;
+    GOLD: return 180;
+    DIAM: return 180;
+    return 500;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_137, cargo_type_in_veh) {
+    PASS: return 85;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_137, 137) {
+    property {
+        name: string(STR_NAME_137);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(2007, 10, 10);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 79;
+        running_cost_factor: 233;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 560 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET_BIG;
+        passenger_capacity: 500;
+        mail_capacity: 85;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_137;
+        mail_capacity: sw_mail_137;
+        purchase_passenger_capacity: 500;
+        purchase_mail_capacity: 85;
+        purchase: ss_aircraft_137;
+        default: sw_graphics_137;
+    }
+}
+
+spriteset (ss_aircraft_138, "gfx/38_1x.png") {
+    [2, 2, 52, 30, -26, -16]
+    [56, 2, 51, 25, -28, -12]
+    [109, 2, 64, 27, -32, -16]
+    [175, 2, 51, 34, -28, -22]
+    [228, 2, 52, 34, -26, -17]
+    [282, 2, 51, 34, -23, -22]
+    [335, 2, 64, 27, -32, -16]
+    [401, 2, 51, 25, -23, -12]
+}
+alternative_sprites (ss_aircraft_138, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/38_4x.png", "gfx/38_4x_mask.png") {
+    [8, 8, 216, 130, -108, -69]
+    [232, 8, 213, 106, -118, -52]
+    [453, 8, 264, 111, -132, -66]
+    [725, 8, 213, 145, -118, -93]
+    [946, 8, 216, 180, -108, -110]
+    [1170, 8, 213, 145, -95, -93]
+    [1391, 8, 264, 111, -132, -66]
+    [1663, 8, 213, 106, -95, -52]
+}
+spriteset (ss_aircraft_138_ground, "gfx/38_ground_1x.png") {
+    [2, 2, 52, 30, -26, -16]
+    [56, 2, 51, 25, -28, -12]
+    [109, 2, 64, 27, -32, -16]
+    [175, 2, 51, 36, -28, -22]
+    [228, 2, 52, 34, -26, -17]
+    [282, 2, 51, 36, -23, -22]
+    [335, 2, 64, 27, -32, -16]
+    [401, 2, 51, 25, -23, -12]
+}
+alternative_sprites (ss_aircraft_138_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/38_ground_4x.png", "gfx/38_ground_4x_mask.png") {
+    [8, 8, 216, 130, -108, -69]
+    [232, 8, 213, 106, -118, -52]
+    [453, 8, 264, 111, -132, -66]
+    [725, 8, 213, 153, -118, -93]
+    [946, 8, 216, 186, -108, -110]
+    [1170, 8, 213, 153, -95, -93]
+    [1391, 8, 264, 111, -132, -66]
+    [1663, 8, 213, 106, -95, -52]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_138, flight_state) {
+    0x00..0x0E: ss_aircraft_138_ground;
+    0x14..0x16: ss_aircraft_138_ground;
+    ss_aircraft_138;
+}
+// Boeing 787.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_138, cargo_type_in_veh) {
+    MAIL: return 210;
+    GOOD: return 210;
+    VALU: return 105;
+    GOLD: return 105;
+    DIAM: return 105;
+    return 280;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_138, cargo_type_in_veh) {
+    PASS: return 85;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_138, 138) {
+    property {
+        name: string(STR_NAME_138);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(2011, 11, 1);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 62;
+        running_cost_factor: 186;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 560 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET_BIG;
+        passenger_capacity: 280;
+        mail_capacity: 85;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_138;
+        mail_capacity: sw_mail_138;
+        purchase_passenger_capacity: 280;
+        purchase_mail_capacity: 85;
+        purchase: ss_aircraft_138;
+        default: sw_graphics_138;
+    }
+}
+
+spriteset (ss_aircraft_139, "gfx/39_1x.png") {
+    [2, 2, 70, 35, -35, -21]
+    [74, 2, 61, 29, -35, -17]
+    [137, 2, 74, 37, -37, -25]
+    [213, 2, 58, 39, -32, -27]
+    [273, 2, 68, 40, -34, -23]
+    [343, 2, 58, 39, -26, -27]
+    [403, 2, 74, 37, -37, -25]
+    [479, 2, 61, 29, -26, -17]
+}
+alternative_sprites (ss_aircraft_139, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/39_4x.png", "gfx/39_4x_mask.png") {
+    [8, 8, 290, 147, -145, -88]
+    [306, 8, 254, 120, -146, -70]
+    [568, 8, 300, 154, -150, -103]
+    [876, 8, 254, 159, -146, -110]
+    [1138, 8, 290, 200, -145, -130]
+    [1436, 8, 254, 160, -108, -110]
+    [1698, 8, 300, 154, -150, -103]
+    [2006, 8, 254, 120, -108, -70]
+}
+spriteset (ss_aircraft_139_ground, "gfx/39_ground_1x.png") {
+    [2, 2, 70, 35, -35, -21]
+    [74, 2, 61, 29, -35, -17]
+    [137, 2, 74, 37, -37, -25]
+    [213, 2, 58, 41, -32, -27]
+    [273, 2, 68, 41, -34, -23]
+    [343, 2, 58, 41, -26, -27]
+    [403, 2, 74, 37, -37, -25]
+    [479, 2, 61, 29, -26, -17]
+}
+alternative_sprites (ss_aircraft_139_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/39_ground_4x.png", "gfx/39_ground_4x_mask.png") {
+    [8, 8, 290, 147, -145, -88]
+    [306, 8, 254, 120, -146, -70]
+    [568, 8, 300, 154, -150, -103]
+    [876, 8, 254, 168, -146, -110]
+    [1138, 8, 290, 206, -145, -130]
+    [1436, 8, 254, 168, -108, -110]
+    [1698, 8, 300, 154, -150, -103]
+    [2006, 8, 254, 120, -108, -70]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_139, flight_state) {
+    0x00..0x0E: ss_aircraft_139_ground;
+    0x14..0x16: ss_aircraft_139_ground;
+    ss_aircraft_139;
+}
+// Airbus A350.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_139, cargo_type_in_veh) {
+    MAIL: return 215;
+    GOOD: return 215;
+    VALU: return 105;
+    GOLD: return 105;
+    DIAM: return 105;
+    return 330;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_139, cargo_type_in_veh) {
+    PASS: return 80;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_139, 139) {
+    property {
+        name: string(STR_NAME_139);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(2014, 12, 22);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 68;
+        running_cost_factor: 202;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 560 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET_BIG;
+        passenger_capacity: 330;
+        mail_capacity: 80;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_139;
+        mail_capacity: sw_mail_139;
+        purchase_passenger_capacity: 330;
+        purchase_mail_capacity: 80;
+        purchase: ss_aircraft_139;
+        default: sw_graphics_139;
+    }
+}
+
+spriteset (ss_aircraft_140, "gfx/40_1x.png") {
+    [2, 2, 42, 21, -21, -11]
+    [46, 2, 37, 18, -21, -9]
+    [85, 2, 45, 24, -22, -14]
+    [132, 2, 37, 25, -21, -16]
+    [171, 2, 42, 25, -21, -13]
+    [215, 2, 37, 25, -16, -16]
+    [254, 2, 45, 24, -23, -14]
+    [301, 2, 37, 18, -16, -9]
+}
+alternative_sprites (ss_aircraft_140, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/40_4x.png", "gfx/40_4x_mask.png") {
+    [8, 8, 178, 91, -89, -48]
+    [194, 8, 156, 77, -88, -39]
+    [358, 8, 188, 101, -94, -60]
+    [554, 8, 156, 109, -88, -70]
+    [718, 8, 178, 132, -89, -80]
+    [904, 8, 156, 108, -68, -69]
+    [1068, 8, 188, 101, -94, -60]
+    [1264, 8, 156, 77, -68, -39]
+}
+spriteset (ss_aircraft_140_ground, "gfx/40_ground_1x.png") {
+    [2, 2, 42, 21, -21, -11]
+    [46, 2, 37, 18, -21, -9]
+    [85, 2, 45, 24, -22, -14]
+    [132, 2, 37, 26, -21, -16]
+    [171, 2, 42, 25, -21, -13]
+    [215, 2, 37, 26, -16, -16]
+    [254, 2, 45, 24, -23, -14]
+    [301, 2, 37, 18, -16, -9]
+}
+alternative_sprites (ss_aircraft_140_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/40_ground_4x.png", "gfx/40_ground_4x_mask.png") {
+    [8, 8, 178, 91, -89, -48]
+    [194, 8, 156, 77, -88, -39]
+    [358, 8, 188, 101, -94, -60]
+    [554, 8, 156, 112, -88, -70]
+    [718, 8, 178, 132, -89, -80]
+    [904, 8, 156, 111, -68, -69]
+    [1068, 8, 188, 101, -94, -60]
+    [1264, 8, 156, 77, -68, -39]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_140, flight_state) {
+    0x00..0x0E: ss_aircraft_140_ground;
+    0x14..0x16: ss_aircraft_140_ground;
+    ss_aircraft_140;
+}
+// Airbus A320neo.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_140, cargo_type_in_veh) {
+    MAIL: return 70;
+    GOOD: return 70;
+    VALU: return 35;
+    GOLD: return 35;
+    DIAM: return 35;
+    return 150;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_140, cargo_type_in_veh) {
+    PASS: return 20;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_140, 140) {
+    property {
+        name: string(STR_NAME_140);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(2016, 1, 15);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 33;
+        running_cost_factor: 126;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 512 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 150;
+        mail_capacity: 20;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_140;
+        mail_capacity: sw_mail_140;
+        purchase_passenger_capacity: 150;
+        purchase_mail_capacity: 20;
+        purchase: ss_aircraft_140;
+        default: sw_graphics_140;
+    }
+}
+
+spriteset (ss_aircraft_141, "gfx/41_1x.png") {
+    [2, 2, 40, 22, -20, -12]
+    [44, 2, 37, 18, -20, -9]
+    [83, 2, 47, 22, -23, -12]
+    [132, 2, 37, 26, -20, -17]
+    [171, 2, 40, 25, -20, -13]
+    [213, 2, 37, 26, -17, -17]
+    [252, 2, 47, 22, -24, -12]
+    [301, 2, 37, 18, -17, -9]
+}
+alternative_sprites (ss_aircraft_141, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/41_4x.png", "gfx/41_4x_mask.png") {
+    [8, 8, 169, 95, -85, -50]
+    [185, 8, 158, 78, -88, -38]
+    [351, 8, 196, 99, -98, -56]
+    [555, 8, 158, 110, -88, -71]
+    [721, 8, 170, 138, -85, -85]
+    [899, 8, 158, 110, -70, -71]
+    [1065, 8, 196, 99, -98, -56]
+    [1269, 8, 158, 78, -70, -38]
+}
+spriteset (ss_aircraft_141_ground, "gfx/41_ground_1x.png") {
+    [2, 2, 40, 22, -20, -12]
+    [44, 2, 37, 18, -20, -9]
+    [83, 2, 47, 22, -23, -12]
+    [132, 2, 37, 27, -20, -17]
+    [171, 2, 40, 25, -20, -13]
+    [213, 2, 37, 27, -17, -17]
+    [252, 2, 47, 22, -24, -12]
+    [301, 2, 37, 18, -17, -9]
+}
+alternative_sprites (ss_aircraft_141_ground, ZOOM_LEVEL_IN_4X, BIT_DEPTH_32BPP, "gfx/41_ground_4x.png", "gfx/41_ground_4x_mask.png") {
+    [8, 8, 169, 95, -85, -50]
+    [185, 8, 158, 78, -88, -38]
+    [351, 8, 196, 99, -98, -56]
+    [555, 8, 158, 113, -88, -71]
+    [721, 8, 170, 138, -85, -85]
+    [899, 8, 158, 113, -70, -71]
+    [1065, 8, 196, 99, -98, -56]
+    [1269, 8, 158, 78, -70, -38]
+}
+switch (FEAT_AIRCRAFT, SELF, sw_graphics_141, flight_state) {
+    0x00..0x0E: ss_aircraft_141_ground;
+    0x14..0x16: ss_aircraft_141_ground;
+    ss_aircraft_141;
+}
+// Boeing 737 MAX.
+switch (FEAT_AIRCRAFT, SELF, sw_capacity_141, cargo_type_in_veh) {
+    MAIL: return 85;
+    GOOD: return 85;
+    VALU: return 45;
+    GOLD: return 45;
+    DIAM: return 45;
+    return 160;
+}
+switch (FEAT_AIRCRAFT, SELF, sw_mail_141, cargo_type_in_veh) {
+    PASS: return 20;
+    return 0;
+}
+item (FEAT_AIRCRAFT, aircraft_141, 141) {
+    property {
+        name: string(STR_NAME_141);
+        climates_available: ALL_CLIMATES;
+        introduction_date: date(2017, 5, 16);
+        model_life: VEHICLE_NEVER_EXPIRES;
+        retire_early: 0;
+        vehicle_life: 30;
+        reliability_decay: 20;
+        refittable_cargo_classes: 0;
+        non_refittable_cargo_classes: 0;
+        cargo_allow_refit: [PASS, MAIL, GOOD, VALU, GOLD, DIAM];
+        loading_speed: 20;
+        cost_factor: 35;
+        running_cost_factor: 132;
+        sprite_id: SPRITE_ID_NEW_AIRCRAFT;
+        speed: 512 mph;
+        range: 0;
+        aircraft_type: AIRCRAFT_TYPE_LARGE;
+        acceleration: 30;
+        sound_effect: SOUND_TAKEOFF_JET;
+        passenger_capacity: 160;
+        mail_capacity: 20;
+    }
+    graphics {
+        passenger_capacity: sw_capacity_141;
+        mail_capacity: sw_mail_141;
+        purchase_passenger_capacity: 160;
+        purchase_mail_capacity: 20;
+        purchase: ss_aircraft_141;
+        default: sw_graphics_141;
+    }
+}
